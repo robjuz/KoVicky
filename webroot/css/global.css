@@ -1,0 +1,40 @@
+/*
+body {
+	padding-top: 70px;
+}
+
+.article {
+    background: #ffffff none repeat scroll 0 0;
+    border: 1px solid rgba(0, 0, 0, 0.09);
+    border-radius: 3px;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.04);
+    margin-bottom: 10px;
+    padding-bottom: 20px;
+}
+
+.article a {
+	text-decoration: none;
+	color: black;
+}
+
+.article .img-thumbnail {
+	margin-top: 20px;
+}
+
+.select2-selection {
+	border: 1px solid #cccccc !important;
+	border-radius: 0px 4px 4px 0px !important;
+}
+
+.paginator {
+	text-align: center;
+}
+
+#home-panel {
+	margin-top: 10px;
+}
+
+[type="file"].form-control {
+	padding: 0;
+}
+*/

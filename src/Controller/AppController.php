@@ -58,5 +58,9 @@ class AppController extends Controller
         ) {
             $this->set('_serialize', true);
         }
+
+        if (isset($event->subject()->request->params['prefix']) and ($event->subject()->request->params['prefix'] === 'admin')) {
+            $this->viewBuilder()->layout('admin-default');
+        }
     }
 }
