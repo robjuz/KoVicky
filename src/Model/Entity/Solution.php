@@ -9,9 +9,12 @@ use Cake\ORM\Entity;
  * @property int $id
  * @property int $problem_id
  * @property \App\Model\Entity\Problem $problem
+ * @property int $user_id
+ * @property \App\Model\Entity\User $user
  * @property string $description
  * @property \Cake\I18n\Time $created
  * @property \Cake\I18n\Time $modified
+ * @property \App\Model\Entity\Mediafile[] $mediafiles
  */
 class Solution extends Entity
 {

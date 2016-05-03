@@ -9,7 +9,9 @@ use Cake\ORM\Entity;
  * @property int $id
  * @property string $username
  * @property string $password
+ * @property \App\Model\Entity\Mediafile[] $mediafiles
  * @property \App\Model\Entity\Problem[] $problems
+ * @property \App\Model\Entity\Solution[] $solutions
  */
 class User extends Entity
 {

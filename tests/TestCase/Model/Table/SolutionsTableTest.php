@@ -27,6 +27,7 @@ class SolutionsTableTest extends TestCase
         'app.solutions',
         'app.problems',
         'app.users',
+        'app.mediafiles',
         'app.categories'
     ];
 

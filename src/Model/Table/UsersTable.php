@@ -10,7 +10,9 @@ use Cake\Validation\Validator;
 /**
  * Users Model
  *
+ * @property \Cake\ORM\Association\HasMany $Mediafiles
  * @property \Cake\ORM\Association\HasMany $Problems
+ * @property \Cake\ORM\Association\HasMany $Solutions
  */
 class UsersTable extends Table
 {
@@ -29,7 +31,13 @@ class UsersTable extends Table
         $this->displayField('id');
         $this->primaryKey('id');
 
+        $this->hasMany('Mediafiles', [
+            'foreignKey' => 'user_id'
+        ]);
         $this->hasMany('Problems', [
+            'foreignKey' => 'user_id'
+        ]);
+        $this->hasMany('Solutions', [
             'foreignKey' => 'user_id'
         ]);
     }

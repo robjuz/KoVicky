@@ -18,6 +18,8 @@ class MediafilesFixture extends TestFixture
     // @codingStandardsIgnoreStart
     public $fields = [
         'id' => ['type' => 'integer', 'length' => 11, 'unsigned' => false, 'null' => false, 'default' => null, 'comment' => '', 'autoIncrement' => true, 'precision' => null],
+        'solution_id' => ['type' => 'integer', 'length' => 11, 'unsigned' => false, 'null' => false, 'default' => null, 'comment' => '', 'precision' => null, 'autoIncrement' => null],
+        'user_id' => ['type' => 'integer', 'length' => 11, 'unsigned' => false, 'null' => false, 'default' => null, 'comment' => '', 'precision' => null, 'autoIncrement' => null],
         'file' => ['type' => 'string', 'length' => 255, 'null' => true, 'default' => null, 'comment' => '', 'precision' => null, 'fixed' => null],
         'created' => ['type' => 'datetime', 'length' => null, 'null' => true, 'default' => null, 'comment' => '', 'precision' => null],
         'modified' => ['type' => 'datetime', 'length' => null, 'null' => true, 'default' => null, 'comment' => '', 'precision' => null],
@@ -39,9 +41,11 @@ class MediafilesFixture extends TestFixture
     public $records = [
         [
             'id' => 1,
+            'solution_id' => 1,
+            'user_id' => 1,
             'file' => 'Lorem ipsum dolor sit amet',
-            'created' => '2016-05-02 12:33:21',
-            'modified' => '2016-05-02 12:33:21'
+            'created' => '2016-05-03 05:10:34',
+            'modified' => '2016-05-03 05:10:34'
         ],
     ];
 }

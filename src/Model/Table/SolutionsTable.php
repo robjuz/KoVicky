@@ -11,6 +11,8 @@ use Cake\Validation\Validator;
  * Solutions Model
  *
  * @property \Cake\ORM\Association\BelongsTo $Problems
+ * @property \Cake\ORM\Association\BelongsTo $Users
+ * @property \Cake\ORM\Association\HasMany $Mediafiles
  */
 class SolutionsTable extends Table
 {
@@ -32,7 +34,15 @@ class SolutionsTable extends Table
         $this->addBehavior('Timestamp');
 
         $this->belongsTo('Problems', [
-            'foreignKey' => 'problem_id'
+            'foreignKey' => 'problem_id',
+            'joinType' => 'INNER'
+        ]);
+        $this->belongsTo('Users', [
+            'foreignKey' => 'user_id',
+            'joinType' => 'INNER'
+        ]);
+        $this->hasMany('Mediafiles', [
+            'foreignKey' => 'solution_id'
         ]);
     }
 
@@ -64,6 +74,7 @@ class SolutionsTable extends Table
     public function buildRules(RulesChecker $rules)
     {
         $rules->add($rules->existsIn(['problem_id'], 'Problems'));
+        $rules->add($rules->existsIn(['user_id'], 'Users'));
         return $rules;
     }
 }

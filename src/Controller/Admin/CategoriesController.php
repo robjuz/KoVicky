@@ -12,6 +12,33 @@ class CategoriesController extends AppController
 {
 
     /**
+     * Login method
+     *
+     * @return \Cake\Network\Response|void
+     */
+    public function login()
+    {
+        if ($this->request->is('post')) {
+            $user = $this->Auth->identify();
+            if ($user) {
+                $this->Auth->setUser($user);
+                return $this->redirect($this->Auth->redirectUrl());
+            }
+            $this->Flash->error(__('Invalid credentials, try again'));
+        }
+    }
+
+    /**
+     * Logout method
+     *
+     * @return \Cake\Network\Response
+     */
+    public function logout()
+    {
+        return $this->redirect($this->Auth->logout());
+    }
+
+    /**
      * Index method
      *
      * @return \Cake\Network\Response|null
@@ -45,28 +72,6 @@ class CategoriesController extends AppController
     }
 
     /**
-     * Add method
-     *
-     * @return \Cake\Network\Response|void Redirects on successful add, renders view otherwise.
-     */
-    public function add()
-    {
-        $category = $this->Categories->newEntity();
-        if ($this->request->is('post')) {
-            $category = $this->Categories->patchEntity($category, $this->request->data);
-            if ($this->Categories->save($category)) {
-                $this->Flash->success(__('The category has been saved.'));
-                return $this->redirect(['action' => 'index']);
-            } else {
-                $this->Flash->error(__('The category could not be saved. Please, try again.'));
-            }
-        }
-        $parentCategories = $this->Categories->ParentCategories->find('list', ['limit' => 200]);
-        $this->set(compact('category', 'parentCategories'));
-        $this->set('_serialize', ['category']);
-    }
-
-    /**
      * Edit method
      *
      * @param string|null $id Category id.
@@ -75,9 +80,13 @@ class CategoriesController extends AppController
      */
     public function edit($id = null)
     {
-        $category = $this->Categories->get($id, [
-            'contain' => []
-        ]);
+        if ($id != null) {
+            $category = $this->Categories->get($id, [
+                'contain' => []
+            ]);
+        } else {
+            $category = $this->Categories->newEntity();
+        }
         if ($this->request->is(['patch', 'post', 'put'])) {
             $category = $this->Categories->patchEntity($category, $this->request->data);
             if ($this->Categories->save($category)) {

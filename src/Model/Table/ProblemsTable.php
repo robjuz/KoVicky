@@ -34,10 +34,12 @@ class ProblemsTable extends Table
         $this->addBehavior('Timestamp');
 
         $this->belongsTo('Users', [
-            'foreignKey' => 'user_id'
+            'foreignKey' => 'user_id',
+            'joinType' => 'INNER'
         ]);
         $this->belongsTo('Categories', [
-            'foreignKey' => 'category_id'
+            'foreignKey' => 'category_id',
+            'joinType' => 'INNER'
         ]);
         $this->hasMany('Solutions', [
             'foreignKey' => 'problem_id'

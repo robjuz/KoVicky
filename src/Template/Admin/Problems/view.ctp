@@ -3,14 +3,14 @@
         <li class="heading"><?= __('Actions') ?></li>
         <li><?= $this->Html->link(__('Edit Problem'), ['action' => 'edit', $problem->id]) ?> </li>
         <li><?= $this->Form->postLink(__('Delete Problem'), ['action' => 'delete', $problem->id], ['confirm' => __('Are you sure you want to delete # {0}?', $problem->id)]) ?> </li>
-        <li><?= $this->Html->link(__('List Problems'), ['action' => 'index']) ?> </li>
-        <li><?= $this->Html->link(__('New Problem'), ['action' => 'add']) ?> </li>
-        <li><?= $this->Html->link(__('List Users'), ['controller' => 'Users', 'action' => 'index']) ?> </li>
-        <li><?= $this->Html->link(__('New User'), ['controller' => 'Users', 'action' => 'add']) ?> </li>
-        <li><?= $this->Html->link(__('List Categories'), ['controller' => 'Categories', 'action' => 'index']) ?> </li>
-        <li><?= $this->Html->link(__('New Category'), ['controller' => 'Categories', 'action' => 'add']) ?> </li>
-        <li><?= $this->Html->link(__('List Solutions'), ['controller' => 'Solutions', 'action' => 'index']) ?> </li>
-        <li><?= $this->Html->link(__('New Solution'), ['controller' => 'Solutions', 'action' => 'add']) ?> </li>
+        <li><?= $this->Html->link(__('Problems List'), ['action' => 'index']) ?> </li>
+        <li><?= $this->Html->link(__('New Problem'), ['action' => 'edit']) ?> </li>
+        <li><?= $this->Html->link(__('Users List'), ['controller' => 'Users', 'action' => 'index']) ?> </li>
+        <li><?= $this->Html->link(__('New User'), ['controller' => 'Users', 'action' => 'edit']) ?> </li>
+        <li><?= $this->Html->link(__('Categories List'), ['controller' => 'Categories', 'action' => 'index']) ?> </li>
+        <li><?= $this->Html->link(__('New Category'), ['controller' => 'Categories', 'action' => 'edit']) ?> </li>
+        <li><?= $this->Html->link(__('Solutions List'), ['controller' => 'Solutions', 'action' => 'index']) ?> </li>
+        <li><?= $this->Html->link(__('New Solution'), ['controller' => 'Solutions', 'action' => 'edit']) ?> </li>
     </ul>
 </nav>
 <div class="problems view large-9 medium-8 columns content">
@@ -56,6 +56,7 @@
             <tr>
                 <th><?= __('Id') ?></th>
                 <th><?= __('Problem Id') ?></th>
+                <th><?= __('User Id') ?></th>
                 <th><?= __('Description') ?></th>
                 <th><?= __('Created') ?></th>
                 <th><?= __('Modified') ?></th>
@@ -65,6 +66,7 @@
             <tr>
                 <td><?= h($solutions->id) ?></td>
                 <td><?= h($solutions->problem_id) ?></td>
+                <td><?= h($solutions->user_id) ?></td>
                 <td><?= h($solutions->description) ?></td>
                 <td><?= h($solutions->created) ?></td>
                 <td><?= h($solutions->modified) ?></td>

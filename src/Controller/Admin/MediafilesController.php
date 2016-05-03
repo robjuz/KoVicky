@@ -12,12 +12,42 @@ class MediafilesController extends AppController
 {
 
     /**
+     * Login method
+     *
+     * @return \Cake\Network\Response|void
+     */
+    public function login()
+    {
+        if ($this->request->is('post')) {
+            $user = $this->Auth->identify();
+            if ($user) {
+                $this->Auth->setUser($user);
+                return $this->redirect($this->Auth->redirectUrl());
+            }
+            $this->Flash->error(__('Invalid credentials, try again'));
+        }
+    }
+
+    /**
+     * Logout method
+     *
+     * @return \Cake\Network\Response
+     */
+    public function logout()
+    {
+        return $this->redirect($this->Auth->logout());
+    }
+
+    /**
      * Index method
      *
      * @return \Cake\Network\Response|null
      */
     public function index()
     {
+        $this->paginate = [
+            'contain' => ['Solutions', 'Users']
+        ];
         $mediafiles = $this->paginate($this->Mediafiles);
 
         $this->set(compact('mediafiles'));
@@ -34,31 +64,10 @@ class MediafilesController extends AppController
     public function view($id = null)
     {
         $mediafile = $this->Mediafiles->get($id, [
-            'contain' => []
+            'contain' => ['Solutions', 'Users']
         ]);
 
         $this->set('mediafile', $mediafile);
-        $this->set('_serialize', ['mediafile']);
-    }
-
-    /**
-     * Add method
-     *
-     * @return \Cake\Network\Response|void Redirects on successful add, renders view otherwise.
-     */
-    public function add()
-    {
-        $mediafile = $this->Mediafiles->newEntity();
-        if ($this->request->is('post')) {
-            $mediafile = $this->Mediafiles->patchEntity($mediafile, $this->request->data);
-            if ($this->Mediafiles->save($mediafile)) {
-                $this->Flash->success(__('The mediafile has been saved.'));
-                return $this->redirect(['action' => 'index']);
-            } else {
-                $this->Flash->error(__('The mediafile could not be saved. Please, try again.'));
-            }
-        }
-        $this->set(compact('mediafile'));
         $this->set('_serialize', ['mediafile']);
     }
 
@@ -71,9 +80,13 @@ class MediafilesController extends AppController
      */
     public function edit($id = null)
     {
-        $mediafile = $this->Mediafiles->get($id, [
-            'contain' => []
-        ]);
+        if ($id != null) {
+            $mediafile = $this->Mediafiles->get($id, [
+                'contain' => []
+            ]);
+        } else {
+            $mediafile = $this->Mediafiles->newEntity();
+        }
         if ($this->request->is(['patch', 'post', 'put'])) {
             $mediafile = $this->Mediafiles->patchEntity($mediafile, $this->request->data);
             if ($this->Mediafiles->save($mediafile)) {
@@ -83,7 +96,9 @@ class MediafilesController extends AppController
                 $this->Flash->error(__('The mediafile could not be saved. Please, try again.'));
             }
         }
-        $this->set(compact('mediafile'));
+        $solutions = $this->Mediafiles->Solutions->find('list', ['limit' => 200]);
+        $users = $this->Mediafiles->Users->find('list', ['limit' => 200]);
+        $this->set(compact('mediafile', 'solutions', 'users'));
         $this->set('_serialize', ['mediafile']);
     }
 

@@ -24,7 +24,11 @@ class MediafilesTableTest extends TestCase
      * @var array
      */
     public $fixtures = [
-        'app.mediafiles'
+        'app.mediafiles',
+        'app.solutions',
+        'app.problems',
+        'app.users',
+        'app.categories'
     ];
 
     /**
@@ -67,6 +71,16 @@ class MediafilesTableTest extends TestCase
      * @return void
      */
     public function testValidationDefault()
+    {
+        $this->markTestIncomplete('Not implemented yet.');
+    }
+
+    /**
+     * Test buildRules method
+     *
+     * @return void
+     */
+    public function testBuildRules()
     {
         $this->markTestIncomplete('Not implemented yet.');
     }

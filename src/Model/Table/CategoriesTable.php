@@ -68,7 +68,8 @@ class CategoriesTable extends Table
             ->allowEmpty('lft');
 
         $validator
-            ->allowEmpty('title');
+            ->requirePresence('title', 'create')
+            ->notEmpty('title');
 
         return $validator;
     }

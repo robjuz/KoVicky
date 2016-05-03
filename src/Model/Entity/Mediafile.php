@@ -7,6 +7,10 @@ use Cake\ORM\Entity;
  * Mediafile Entity.
  *
  * @property int $id
+ * @property int $solution_id
+ * @property \App\Model\Entity\Solution $solution
+ * @property int $user_id
+ * @property \App\Model\Entity\User $user
  * @property string $file
  * @property \Cake\I18n\Time $created
  * @property \Cake\I18n\Time $modified

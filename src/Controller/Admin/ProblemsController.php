@@ -12,6 +12,33 @@ class ProblemsController extends AppController
 {
 
     /**
+     * Login method
+     *
+     * @return \Cake\Network\Response|void
+     */
+    public function login()
+    {
+        if ($this->request->is('post')) {
+            $user = $this->Auth->identify();
+            if ($user) {
+                $this->Auth->setUser($user);
+                return $this->redirect($this->Auth->redirectUrl());
+            }
+            $this->Flash->error(__('Invalid credentials, try again'));
+        }
+    }
+
+    /**
+     * Logout method
+     *
+     * @return \Cake\Network\Response
+     */
+    public function logout()
+    {
+        return $this->redirect($this->Auth->logout());
+    }
+
+    /**
      * Index method
      *
      * @return \Cake\Network\Response|null
@@ -45,29 +72,6 @@ class ProblemsController extends AppController
     }
 
     /**
-     * Add method
-     *
-     * @return \Cake\Network\Response|void Redirects on successful add, renders view otherwise.
-     */
-    public function add()
-    {
-        $problem = $this->Problems->newEntity();
-        if ($this->request->is('post')) {
-            $problem = $this->Problems->patchEntity($problem, $this->request->data);
-            if ($this->Problems->save($problem)) {
-                $this->Flash->success(__('The problem has been saved.'));
-                return $this->redirect(['action' => 'index']);
-            } else {
-                $this->Flash->error(__('The problem could not be saved. Please, try again.'));
-            }
-        }
-        $users = $this->Problems->Users->find('list', ['limit' => 200]);
-        $categories = $this->Problems->Categories->find('list', ['limit' => 200]);
-        $this->set(compact('problem', 'users', 'categories'));
-        $this->set('_serialize', ['problem']);
-    }
-
-    /**
      * Edit method
      *
      * @param string|null $id Problem id.
@@ -76,9 +80,13 @@ class ProblemsController extends AppController
      */
     public function edit($id = null)
     {
-        $problem = $this->Problems->get($id, [
-            'contain' => []
-        ]);
+        if ($id != null) {
+            $problem = $this->Problems->get($id, [
+                'contain' => []
+            ]);
+        } else {
+            $problem = $this->Problems->newEntity();
+        }
         if ($this->request->is(['patch', 'post', 'put'])) {
             $problem = $this->Problems->patchEntity($problem, $this->request->data);
             if ($this->Problems->save($problem)) {

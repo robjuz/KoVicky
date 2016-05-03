@@ -1,9 +1,13 @@
 <nav class="large-3 medium-4 columns" id="actions-sidebar">
     <ul class="side-nav">
         <li class="heading"><?= __('Actions') ?></li>
-        <li><?= $this->Html->link(__('New Solution'), ['action' => 'add']) ?></li>
-        <li><?= $this->Html->link(__('List Problems'), ['controller' => 'Problems', 'action' => 'index']) ?></li>
-        <li><?= $this->Html->link(__('New Problem'), ['controller' => 'Problems', 'action' => 'add']) ?></li>
+        <li><?= $this->Html->link(__('New Solution'), ['action' => 'edit']) ?></li>
+        <li><?= $this->Html->link(__('Problems List'), ['controller' => 'Problems', 'action' => 'index']) ?></li>
+        <li><?= $this->Html->link(__('New Problem'), ['controller' => 'Problems', 'action' => 'edit']) ?></li>
+        <li><?= $this->Html->link(__('Users List'), ['controller' => 'Users', 'action' => 'index']) ?></li>
+        <li><?= $this->Html->link(__('New User'), ['controller' => 'Users', 'action' => 'edit']) ?></li>
+        <li><?= $this->Html->link(__('Mediafiles List'), ['controller' => 'Mediafiles', 'action' => 'index']) ?></li>
+        <li><?= $this->Html->link(__('New Mediafile'), ['controller' => 'Mediafiles', 'action' => 'edit']) ?></li>
     </ul>
 </nav>
 <div class="solutions index large-9 medium-8 columns content">
@@ -13,6 +17,7 @@
             <tr>
                 <th><?= $this->Paginator->sort('id') ?></th>
                 <th><?= $this->Paginator->sort('problem_id') ?></th>
+                <th><?= $this->Paginator->sort('user_id') ?></th>
                 <th><?= $this->Paginator->sort('created') ?></th>
                 <th><?= $this->Paginator->sort('modified') ?></th>
                 <th class="actions"><?= __('Actions') ?></th>
@@ -23,6 +28,7 @@
             <tr>
                 <td><?= $this->Number->format($solution->id) ?></td>
                 <td><?= $solution->has('problem') ? $this->Html->link($solution->problem->title, ['controller' => 'Problems', 'action' => 'view', $solution->problem->id]) : '' ?></td>
+                <td><?= $solution->has('user') ? $this->Html->link($solution->user->id, ['controller' => 'Users', 'action' => 'view', $solution->user->id]) : '' ?></td>
                 <td><?= h($solution->created) ?></td>
                 <td><?= h($solution->modified) ?></td>
                 <td class="actions">

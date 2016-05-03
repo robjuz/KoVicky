@@ -26,8 +26,9 @@ class ProblemsTableTest extends TestCase
     public $fixtures = [
         'app.problems',
         'app.users',
-        'app.categories',
-        'app.solutions'
+        'app.mediafiles',
+        'app.solutions',
+        'app.categories'
     ];
 
     /**

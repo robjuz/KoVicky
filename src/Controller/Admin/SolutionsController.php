@@ -12,6 +12,33 @@ class SolutionsController extends AppController
 {
 
     /**
+     * Login method
+     *
+     * @return \Cake\Network\Response|void
+     */
+    public function login()
+    {
+        if ($this->request->is('post')) {
+            $user = $this->Auth->identify();
+            if ($user) {
+                $this->Auth->setUser($user);
+                return $this->redirect($this->Auth->redirectUrl());
+            }
+            $this->Flash->error(__('Invalid credentials, try again'));
+        }
+    }
+
+    /**
+     * Logout method
+     *
+     * @return \Cake\Network\Response
+     */
+    public function logout()
+    {
+        return $this->redirect($this->Auth->logout());
+    }
+
+    /**
      * Index method
      *
      * @return \Cake\Network\Response|null
@@ -19,7 +46,7 @@ class SolutionsController extends AppController
     public function index()
     {
         $this->paginate = [
-            'contain' => ['Problems']
+            'contain' => ['Problems', 'Users']
         ];
         $solutions = $this->paginate($this->Solutions);
 
@@ -37,32 +64,10 @@ class SolutionsController extends AppController
     public function view($id = null)
     {
         $solution = $this->Solutions->get($id, [
-            'contain' => ['Problems']
+            'contain' => ['Problems', 'Users', 'Mediafiles']
         ]);
 
         $this->set('solution', $solution);
-        $this->set('_serialize', ['solution']);
-    }
-
-    /**
-     * Add method
-     *
-     * @return \Cake\Network\Response|void Redirects on successful add, renders view otherwise.
-     */
-    public function add()
-    {
-        $solution = $this->Solutions->newEntity();
-        if ($this->request->is('post')) {
-            $solution = $this->Solutions->patchEntity($solution, $this->request->data);
-            if ($this->Solutions->save($solution)) {
-                $this->Flash->success(__('The solution has been saved.'));
-                return $this->redirect(['action' => 'index']);
-            } else {
-                $this->Flash->error(__('The solution could not be saved. Please, try again.'));
-            }
-        }
-        $problems = $this->Solutions->Problems->find('list', ['limit' => 200]);
-        $this->set(compact('solution', 'problems'));
         $this->set('_serialize', ['solution']);
     }
 
@@ -75,9 +80,13 @@ class SolutionsController extends AppController
      */
     public function edit($id = null)
     {
-        $solution = $this->Solutions->get($id, [
-            'contain' => []
-        ]);
+        if ($id != null) {
+            $solution = $this->Solutions->get($id, [
+                'contain' => []
+            ]);
+        } else {
+            $solution = $this->Solutions->newEntity();
+        }
         if ($this->request->is(['patch', 'post', 'put'])) {
             $solution = $this->Solutions->patchEntity($solution, $this->request->data);
             if ($this->Solutions->save($solution)) {
@@ -88,7 +97,8 @@ class SolutionsController extends AppController
             }
         }
         $problems = $this->Solutions->Problems->find('list', ['limit' => 200]);
-        $this->set(compact('solution', 'problems'));
+        $users = $this->Solutions->Users->find('list', ['limit' => 200]);
+        $this->set(compact('solution', 'problems', 'users'));
         $this->set('_serialize', ['solution']);
     }
 

@@ -27,6 +27,7 @@ class CategoriesTableTest extends TestCase
         'app.categories',
         'app.problems',
         'app.users',
+        'app.mediafiles',
         'app.solutions'
     ];
 
