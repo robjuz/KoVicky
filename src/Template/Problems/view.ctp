@@ -29,7 +29,6 @@
 
     <div id="solutions">
         <div class="well">
-            <h4><?= __('Related Solutions') ?></h4>
 
         <?php if (!empty($problem->solutions)): ?>
             <?php foreach ($problem->solutions as $solution): ?>
@@ -51,15 +50,15 @@
 
                             <!-- Nav tabs -->
                             <ul class="nav nav-tabs nav-justified" role="tablist">
-                                <li role="presentation" class="active"><a href="#description" aria-controls="description" role="tab" data-toggle="tab"><?= __('Steps') ?></a></li>
-                                <li role="presentation"><a href="#mediafiles" aria-controls="mediafiles" role="tab" data-toggle="tab"><?= __('Files') ?></a></li>
+                                <li role="presentation" class="active"><a href="#description-<?= $solution->id ?>" aria-controls="description" role="tab" data-toggle="tab"><?= __('Steps') ?></a></li>
+                                <li role="presentation"><a href="#mediafiles-<?= $solution->id ?>" aria-controls="mediafiles" role="tab" data-toggle="tab"><?= __('Files') ?></a></li>
                             </ul>
                             <!-- Tab panes -->
                             <div class="tab-content">
-                                <div role="tabpanel" class="tab-pane fade in active" id="description">
+                                <div role="tabpanel" class="tab-pane fade in active" id="description-<?= $solution->id ?>">
                                     <?= $solution->description ?>
                                 </div>
-                                <div role="tabpanel" class="tab-pane fade" id="mediafiles">
+                                <div role="tabpanel" class="tab-pane fade" id="mediafiles-<?= $solution->id ?>">
                                     FILES
                                 </div>
                             </div>

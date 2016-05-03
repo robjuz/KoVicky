@@ -18,8 +18,8 @@
             echo $this->Form->input('user_id', ['options' => $users]);
             echo $this->Form->input('category_id', ['options' => $categories]);
             echo $this->Form->input('title');
-            echo $this->Form->input('thesis');
-            echo $this->Form->input('description');
+            echo $this->Form->input('thesis',['class' => 'wysiwyg']);
+            echo $this->Form->input('description',['class' => 'wysiwyg']);
         ?>
     </fieldset>
     <?= $this->Form->button(__('Submit')) ?>
