@@ -43,6 +43,12 @@ class AppController extends Controller
 
         $this->loadComponent('RequestHandler');
         $this->loadComponent('Flash');
+        $this->loadComponent('Auth', [
+            'logoutRedirect' => [
+                'controller' => 'Problems',
+                'action' => 'index'
+            ]
+        ]);
     }
 
     /**
@@ -62,5 +68,10 @@ class AppController extends Controller
         if (isset($event->subject()->request->params['prefix']) and ($event->subject()->request->params['prefix'] === 'admin')) {
             $this->viewBuilder()->layout('admin-default');
         }
+    }
+
+    public function beforeFilter(Event $event)
+    {
+        $this->Auth->allow(['index', 'view']);
     }
 }
