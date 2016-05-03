@@ -26,8 +26,8 @@ $cakeDescription = 'CakePHP: the rapid development php framework';
     </title>
     <?= $this->Html->meta('icon') ?>
 
-    <?= $this->Html->css(['bootstrap.min','bootstrap-material-design.min','ripples.min','select2.min','global']) ?>
-    <?= $this->Html->script(['jquery-2.2.2.min', 'bootstrap.min','material.min','ripples.min', 'select2.min', 'global', 'tinymce/tinymce.min.js']); ?>
+    <?= $this->Html->css(['bootstrap.min','bootstrap-material-design.min','ripples.min','select2.min','dropzone','global']) ?>
+    <?= $this->Html->script(['jquery-2.2.2.min', 'bootstrap.min','material.min','ripples.min', 'select2.min','dropzone', 'global', 'tinymce/tinymce.min.js']); ?>
     <?= $this->fetch('meta') ?>
     <?= $this->fetch('css') ?>
     <?= $this->fetch('script') ?>

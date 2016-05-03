@@ -70,7 +70,6 @@ class SolutionsController extends AppController
         $this->set('solution', $solution);
         $this->set('_serialize', ['solution']);
     }
-
     /**
      * Edit method
      *
@@ -86,9 +85,12 @@ class SolutionsController extends AppController
             ]);
         } else {
             $solution = $this->Solutions->newEntity();
+            $this->Solutions->save($solution);
+            return $this->redirect(['action' => 'edit', $solution->id]);
         }
         if ($this->request->is(['patch', 'post', 'put'])) {
             $solution = $this->Solutions->patchEntity($solution, $this->request->data);
+            $solution->is_active = true;
             if ($this->Solutions->save($solution)) {
                 $this->Flash->success(__('The solution has been saved.'));
                 return $this->redirect(['action' => 'index']);

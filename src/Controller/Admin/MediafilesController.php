@@ -11,31 +11,19 @@ use App\Controller\AppController;
 class MediafilesController extends AppController
 {
 
-    /**
-     * Login method
-     *
-     * @return \Cake\Network\Response|void
-     */
-    public function login()
-    {
-        if ($this->request->is('post')) {
-            $user = $this->Auth->identify();
-            if ($user) {
-                $this->Auth->setUser($user);
-                return $this->redirect($this->Auth->redirectUrl());
-            }
-            $this->Flash->error(__('Invalid credentials, try again'));
-        }
-    }
+    public function upload($id = null) {
 
-    /**
-     * Logout method
-     *
-     * @return \Cake\Network\Response
-     */
-    public function logout()
-    {
-        return $this->redirect($this->Auth->logout());
+        $file = $this->Mediafiles->newEntity();
+        $data = $this->request->data['file'];
+
+        $file->file_name = $data['name'];
+        $file->file_url = "uploads/".time().'-'.$data['name'];
+        $file->user_id = 1; //TODO use Auth
+        $file->solution_id = $id;
+        
+        if(move_uploaded_file($data['tmp_name'],$file->file_url)){
+            $this->Mediafiles->save($file);
+        }
     }
 
     /**
