@@ -18,10 +18,7 @@ class ProblemsController extends AppController
      */
     public function index()
     {
-        $this->paginate = [
-            'contain' => ['Users', 'Categories']
-        ];
-        $problems = $this->paginate($this->Problems);
+        $problems = $this->Problems->find('all', ['limit' => 10]);
 
         $this->set(compact('problems'));
         $this->set('_serialize', ['problems']);

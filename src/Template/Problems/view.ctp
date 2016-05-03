@@ -21,9 +21,9 @@
         <?php endif ?>
 
         <hr>
-        <?= $this->Text->autoParagraph(h($problem->thesis)); ?>
+        <?= $problem->thesis ?>
         <hr>
-        <?= $this->Text->autoParagraph(h($problem->description)); ?>
+        <?= $problem->description ?>
 
     </div>
 
