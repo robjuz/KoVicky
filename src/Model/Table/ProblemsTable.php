@@ -27,7 +27,7 @@ class ProblemsTable extends Table
     {
         parent::initialize($config);
 
-        $this->table('problems');
+        $this->table('KoVicky_problems');
         $this->displayField('title');
         $this->primaryKey('id');
 

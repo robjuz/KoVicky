@@ -3,9 +3,9 @@ use Migrations\AbstractMigration;
 
 class Initial extends AbstractMigration
 {
-    public function change()
+    public function up()
     {
-        $table = $this->table('kovicky_categories');
+        $table = $this->table('KoVicky_categories');
         $table
             ->addColumn('parent_id', 'integer', [
                 'default' => null,
@@ -39,9 +39,9 @@ class Initial extends AbstractMigration
             ])
             ->create();
 
-        $table = $this->table('kovicky_mediafiles');
+        $table = $this->table('KoVicky_mediafiles');
         $table
-            ->addColumn('kovicky_solution_id', 'integer', [
+            ->addColumn('solution_id', 'integer', [
                 'default' => null,
                 'limit' => 11,
                 'null' => false,
@@ -73,14 +73,14 @@ class Initial extends AbstractMigration
             ])
             ->create();
 
-        $table = $this->table('kovicky_problems');
+        $table = $this->table('KoVicky_problems');
         $table
             ->addColumn('user_id', 'integer', [
                 'default' => null,
                 'limit' => 11,
                 'null' => false,
             ])
-            ->addColumn('kovicky_category_id', 'integer', [
+            ->addColumn('category_id', 'integer', [
                 'default' => null,
                 'limit' => 11,
                 'null' => false,
@@ -112,9 +112,9 @@ class Initial extends AbstractMigration
             ])
             ->create();
 
-        $table = $this->table('kovicky_solutions');
+        $table = $this->table('KoVicky_solutions');
         $table
-            ->addColumn('kovicky_problem_id', 'integer', [
+            ->addColumn('problem_id', 'integer', [
                 'default' => null,
                 'limit' => 11,
                 'null' => true,
@@ -145,13 +145,14 @@ class Initial extends AbstractMigration
                 'null' => true,
             ])
             ->create();
+
     }
 
     public function down()
     {
-        $this->droptable('kovicky_categories');
-        $this->droptable('kovicky_mediafiles');
-        $this->droptable('kovicky_problems');
-        $this->droptable('kovicky_solutions');
+        $this->dropTable('KoVicky_categories');
+        $this->dropTable('KoVicky_mediafiles');
+        $this->dropTable('KoVicky_problems');
+        $this->dropTable('KoVicky_solutions');
     }
 }

@@ -27,7 +27,7 @@ class SolutionsTable extends Table
     {
         parent::initialize($config);
 
-        $this->table('solutions');
+        $this->table('KoVicky_solutions');
         $this->displayField('id');
         $this->primaryKey('id');
 

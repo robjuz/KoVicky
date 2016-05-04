@@ -26,7 +26,7 @@ class MediafilesTable extends Table
     {
         parent::initialize($config);
 
-        $this->table('mediafiles');
+        $this->table('KoVicky_mediafiles');
         $this->displayField('id');
         $this->primaryKey('id');
 

@@ -27,7 +27,7 @@ class CategoriesTable extends Table
     {
         parent::initialize($config);
 
-        $this->table('categories');
+        $this->table('KoVicky_categories');
         $this->displayField('title');
         $this->primaryKey('id');
 
