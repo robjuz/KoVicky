@@ -23,12 +23,7 @@ class AppController extends BaseController
 
         $this->loadComponent('RequestHandler');
         $this->loadComponent('Flash');
-        $this->loadComponent('Auth', [
-            'logoutRedirect' => [
-                'controller' => 'Problems',
-                'action' => 'index'
-            ]
-        ]);
+        $this->loadComponent('Auth');
     }
 
     /**

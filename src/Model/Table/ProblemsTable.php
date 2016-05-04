@@ -32,11 +32,17 @@ class ProblemsTable extends Table
         $this->primaryKey('id');
 
         $this->addBehavior('Timestamp');
+        $this->addBehavior('Tree');
 
-        $this->belongsTo('KoVicky.Users', [
-            'foreignKey' => 'user_id',
-            'joinType' => 'INNER'
+        $this->belongsTo('ParentProblems', [
+            'className' => 'KoVicky.Problems',
+            'foreignKey' => 'parent_id'
         ]);
+        $this->hasMany('ChildProblems', [
+            'className' => 'KoVicky.Problems',
+            'foreignKey' => 'parent_id'
+        ]);
+
         $this->belongsTo('KoVicky.Categories', [
             'foreignKey' => 'category_id',
             'joinType' => 'INNER'
@@ -56,15 +62,11 @@ class ProblemsTable extends Table
     {
         $validator
             ->integer('id')
-            ->allowEmpty('id', 'create');
-
-        $validator
-            ->allowEmpty('title');
-
-        $validator
-            ->allowEmpty('thesis');
-
-        $validator
+            ->allowEmpty('id', 'create')
+            ->allowEmpty('parent_id')
+            ->notEmpty('title')
+            ->notEmpty('category_id')
+            ->allowEmpty('thesis')
             ->allowEmpty('description');
 
         return $validator;
@@ -79,7 +81,7 @@ class ProblemsTable extends Table
      */
     public function buildRules(RulesChecker $rules)
     {
-        $rules->add($rules->existsIn(['user_id'], 'Users'));
+        $rules->add($rules->existsIn(['parent_id'], 'ParentProblems'));
         $rules->add($rules->existsIn(['category_id'], 'Categories'));
         return $rules;
     }

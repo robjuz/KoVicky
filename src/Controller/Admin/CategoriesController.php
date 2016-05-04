@@ -37,7 +37,7 @@ class CategoriesController extends AppController
     public function view($id = null)
     {
         $category = $this->Categories->get($id, [
-            'contain' => ['ParentCategories', 'ChildCategories', 'Problems']
+            'contain' => ['ParentCategories', 'ChildCategories' => ['ParentCategories'], 'Problems' => ['Categories']]
         ]);
 
         $this->set('category', $category);

@@ -37,10 +37,6 @@ class SolutionsTable extends Table
             'foreignKey' => 'problem_id',
             'joinType' => 'INNER'
         ]);
-        $this->belongsTo('KoVicky.Users', [
-            'foreignKey' => 'user_id',
-            'joinType' => 'INNER'
-        ]);
         $this->hasMany('KoVicky.Mediafiles', [
             'foreignKey' => 'solution_id'
         ]);
@@ -56,9 +52,8 @@ class SolutionsTable extends Table
     {
         $validator
             ->integer('id')
-            ->allowEmpty('id', 'create');
-
-        $validator
+            ->allowEmpty('id', 'create')
+            ->notEmpty('problem_id')
             ->allowEmpty('description');
 
         return $validator;
@@ -74,7 +69,6 @@ class SolutionsTable extends Table
     public function buildRules(RulesChecker $rules)
     {
         $rules->add($rules->existsIn(['problem_id'], 'Problems'));
-        $rules->add($rules->existsIn(['user_id'], 'Users'));
         return $rules;
     }
 }

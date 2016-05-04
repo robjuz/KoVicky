@@ -46,11 +46,6 @@ class Initial extends AbstractMigration
                 'limit' => 11,
                 'null' => false,
             ])
-            ->addColumn('user_id', 'integer', [
-                'default' => 1,
-                'limit' => 11,
-                'null' => false,
-            ])
             ->addColumn('file_name', 'string', [
                 'default' => null,
                 'limit' => 255,
@@ -75,10 +70,20 @@ class Initial extends AbstractMigration
 
         $table = $this->table('KoVicky_problems');
         $table
-            ->addColumn('user_id', 'integer', [
+            ->addColumn('parent_id', 'integer', [
                 'default' => null,
                 'limit' => 11,
-                'null' => false,
+                'null' => true,
+            ])
+            ->addColumn('rght', 'integer', [
+                'default' => null,
+                'limit' => 11,
+                'null' => true,
+            ])
+            ->addColumn('lft', 'integer', [
+                'default' => null,
+                'limit' => 11,
+                'null' => true,
             ])
             ->addColumn('category_id', 'integer', [
                 'default' => null,
@@ -115,11 +120,6 @@ class Initial extends AbstractMigration
         $table = $this->table('KoVicky_solutions');
         $table
             ->addColumn('problem_id', 'integer', [
-                'default' => null,
-                'limit' => 11,
-                'null' => true,
-            ])
-            ->addColumn('user_id', 'integer', [
                 'default' => null,
                 'limit' => 11,
                 'null' => true,

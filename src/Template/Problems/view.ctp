@@ -6,9 +6,9 @@
                 <?= $problem->has('category') ? $this->Html->link($problem->category->title, ['controller' => 'Categories', 'action' => 'view', $problem->category->id]) : '' ?>
             </small>
         </h3>
-        <p class="lead">
+<!--         <p class="lead">
             <?= __('by {0}', $problem->user->username) ?>
-        </p>
+        </p> -->
         <p>
             <span class="glyphicon glyphicon-time"></span>
             <?= __('Created on {0}',h($problem->created)) ?>
@@ -30,12 +30,14 @@
     <div id="solutions">
         <div class="well">
 
-        <?php if (!empty($problem->solutions)): ?>
+        <?php 
+        $solutionNumber = 0;
+        if (!empty($problem->solutions)): ?>
             <?php foreach ($problem->solutions as $solution): ?>
                 <div class="panel panel-default">
                     <div class="panel-heading">
                        <p>
-                           <?= __('Solution by: {0}', $solution->user->username) ?>
+                           <?= __('Solution: {0}', ++$solutionNumber) ?>
                        </p>
                         <p>
                         <p><span class="glyphicon glyphicon-time"></span> <?= __('Created on {0}',h($solution->created)) ?></p>

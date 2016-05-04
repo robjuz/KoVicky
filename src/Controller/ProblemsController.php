@@ -34,79 +34,10 @@ class ProblemsController extends AppController
     public function view($id = null)
     {
         $problem = $this->Problems->get($id, [
-            'contain' => ['Users', 'Categories', 'Solutions' => ['Users']]
+            'contain' => ['Categories', 'Solutions']
         ]);
 
         $this->set('problem', $problem);
         $this->set('_serialize', ['problem']);
-    }
-
-    /**
-     * Add method
-     *
-     * @return \Cake\Network\Response|void Redirects on successful add, renders view otherwise.
-     */
-    public function add()
-    {
-        $problem = $this->Problems->newEntity();
-        if ($this->request->is('post')) {
-            $problem = $this->Problems->patchEntity($problem, $this->request->data);
-            if ($this->Problems->save($problem)) {
-                $this->Flash->success(__('The problem has been saved.'));
-                return $this->redirect(['action' => 'index']);
-            } else {
-                $this->Flash->error(__('The problem could not be saved. Please, try again.'));
-            }
-        }
-        $users = $this->Problems->Users->find('list', ['limit' => 200]);
-        $categories = $this->Problems->Categories->find('list', ['limit' => 200]);
-        $this->set(compact('problem', 'users', 'categories'));
-        $this->set('_serialize', ['problem']);
-    }
-
-    /**
-     * Edit method
-     *
-     * @param string|null $id Problem id.
-     * @return \Cake\Network\Response|void Redirects on successful edit, renders view otherwise.
-     * @throws \Cake\Network\Exception\NotFoundException When record not found.
-     */
-    public function edit($id = null)
-    {
-        $problem = $this->Problems->get($id, [
-            'contain' => []
-        ]);
-        if ($this->request->is(['patch', 'post', 'put'])) {
-            $problem = $this->Problems->patchEntity($problem, $this->request->data);
-            if ($this->Problems->save($problem)) {
-                $this->Flash->success(__('The problem has been saved.'));
-                return $this->redirect(['action' => 'index']);
-            } else {
-                $this->Flash->error(__('The problem could not be saved. Please, try again.'));
-            }
-        }
-        $users = $this->Problems->Users->find('list', ['limit' => 200]);
-        $categories = $this->Problems->Categories->find('list', ['limit' => 200]);
-        $this->set(compact('problem', 'users', 'categories'));
-        $this->set('_serialize', ['problem']);
-    }
-
-    /**
-     * Delete method
-     *
-     * @param string|null $id Problem id.
-     * @return \Cake\Network\Response|null Redirects to index.
-     * @throws \Cake\Datasource\Exception\RecordNotFoundException When record not found.
-     */
-    public function delete($id = null)
-    {
-        $this->request->allowMethod(['post', 'delete']);
-        $problem = $this->Problems->get($id);
-        if ($this->Problems->delete($problem)) {
-            $this->Flash->success(__('The problem has been deleted.'));
-        } else {
-            $this->Flash->error(__('The problem could not be deleted. Please, try again.'));
-        }
-        return $this->redirect(['action' => 'index']);
     }
 }

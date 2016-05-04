@@ -34,12 +34,12 @@ class CategoriesTable extends Table
         $this->addBehavior('Timestamp');
         $this->addBehavior('Tree');
 
-        $this->belongsTo('KoVicky.ParentCategories', [
-            'className' => 'Categories',
+        $this->belongsTo('ParentCategories', [
+            'className' => 'KoVicky.Categories',
             'foreignKey' => 'parent_id'
         ]);
-        $this->hasMany('KoVicky.ChildCategories', [
-            'className' => 'Categories',
+        $this->hasMany('ChildCategories', [
+            'className' => 'KoVicky.Categories',
             'foreignKey' => 'parent_id'
         ]);
         $this->hasMany('KoVicky.Problems', [

@@ -12,33 +12,6 @@ class SolutionsController extends AppController
 {
 
     /**
-     * Login method
-     *
-     * @return \Cake\Network\Response|void
-     */
-    public function login()
-    {
-        if ($this->request->is('post')) {
-            $user = $this->Auth->identify();
-            if ($user) {
-                $this->Auth->setUser($user);
-                return $this->redirect($this->Auth->redirectUrl());
-            }
-            $this->Flash->error(__('Invalid credentials, try again'));
-        }
-    }
-
-    /**
-     * Logout method
-     *
-     * @return \Cake\Network\Response
-     */
-    public function logout()
-    {
-        return $this->redirect($this->Auth->logout());
-    }
-
-    /**
      * Index method
      *
      * @return \Cake\Network\Response|null
@@ -46,7 +19,7 @@ class SolutionsController extends AppController
     public function index()
     {
         $this->paginate = [
-            'contain' => ['Problems', 'Users']
+            'contain' => ['Problems']
         ];
         $solutions = $this->paginate($this->Solutions);
 
@@ -64,7 +37,7 @@ class SolutionsController extends AppController
     public function view($id = null)
     {
         $solution = $this->Solutions->get($id, [
-            'contain' => ['Problems', 'Users', 'Mediafiles']
+            'contain' => ['Problems', 'Mediafiles']
         ]);
 
         $this->set('solution', $solution);
@@ -99,7 +72,6 @@ class SolutionsController extends AppController
             }
         }
         $problems = $this->Solutions->Problems->find('list', ['limit' => 200]);
-        $users = $this->Solutions->Users->find('list', ['limit' => 200]);
         $this->set(compact('solution', 'problems', 'users'));
         $this->set('_serialize', ['solution']);
     }

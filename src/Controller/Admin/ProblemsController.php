@@ -19,7 +19,7 @@ class ProblemsController extends AppController
     public function index()
     {
         $this->paginate = [
-            'contain' => ['Users', 'Categories']
+            'contain' => ['Categories','ParentProblems', 'ChildProblems' => ['ParentProblems']]
         ];
         $problems = $this->paginate($this->Problems);
 
@@ -37,7 +37,7 @@ class ProblemsController extends AppController
     public function view($id = null)
     {
         $problem = $this->Problems->get($id, [
-            'contain' => ['Users', 'Categories', 'Solutions']
+            'contain' => ['Categories', 'Solutions']
         ]);
 
         $this->set('problem', $problem);
@@ -69,9 +69,9 @@ class ProblemsController extends AppController
                 $this->Flash->error(__('The problem could not be saved. Please, try again.'));
             }
         }
-        $users = $this->Problems->Users->find('list', ['limit' => 200]);
-        $categories = $this->Problems->Categories->find('list', ['limit' => 200]);
-        $this->set(compact('problem', 'users', 'categories'));
+        $parentProblems = $this->Problems->find('treeList');
+        $categories = $this->Problems->Categories->find('treeList');
+        $this->set(compact('problem', 'categories', 'parentProblems'));
         $this->set('_serialize', ['problem']);
     }
 

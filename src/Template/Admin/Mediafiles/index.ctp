@@ -1,13 +1,3 @@
-<nav class="large-3 medium-4 columns" id="actions-sidebar">
-    <ul class="side-nav">
-        <li class="heading"><?= __('Actions') ?></li>
-        <li><?= $this->Html->link(__('New Mediafile'), ['action' => 'edit']) ?></li>
-        <li><?= $this->Html->link(__('Solutions List'), ['controller' => 'Solutions', 'action' => 'index']) ?></li>
-        <li><?= $this->Html->link(__('New Solution'), ['controller' => 'Solutions', 'action' => 'edit']) ?></li>
-        <li><?= $this->Html->link(__('Users List'), ['controller' => 'Users', 'action' => 'index']) ?></li>
-        <li><?= $this->Html->link(__('New User'), ['controller' => 'Users', 'action' => 'edit']) ?></li>
-    </ul>
-</nav>
 <div class="mediafiles index large-9 medium-8 columns content">
     <h3><?= __('Mediafiles') ?></h3>
     <table cellpadding="0" cellspacing="0">

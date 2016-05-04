@@ -1,18 +1,3 @@
-<nav class="large-3 medium-4 columns" id="actions-sidebar">
-    <ul class="side-nav">
-        <li class="heading"><?= __('Actions') ?></li>
-        <li><?= $this->Html->link(__('Edit Solution'), ['action' => 'edit', $solution->id]) ?> </li>
-        <li><?= $this->Form->postLink(__('Delete Solution'), ['action' => 'delete', $solution->id], ['confirm' => __('Are you sure you want to delete # {0}?', $solution->id)]) ?> </li>
-        <li><?= $this->Html->link(__('Solutions List'), ['action' => 'index']) ?> </li>
-        <li><?= $this->Html->link(__('New Solution'), ['action' => 'edit']) ?> </li>
-        <li><?= $this->Html->link(__('Problems List'), ['controller' => 'Problems', 'action' => 'index']) ?> </li>
-        <li><?= $this->Html->link(__('New Problem'), ['controller' => 'Problems', 'action' => 'edit']) ?> </li>
-        <li><?= $this->Html->link(__('Users List'), ['controller' => 'Users', 'action' => 'index']) ?> </li>
-        <li><?= $this->Html->link(__('New User'), ['controller' => 'Users', 'action' => 'edit']) ?> </li>
-        <li><?= $this->Html->link(__('Mediafiles List'), ['controller' => 'Mediafiles', 'action' => 'index']) ?> </li>
-        <li><?= $this->Html->link(__('New Mediafile'), ['controller' => 'Mediafiles', 'action' => 'edit']) ?> </li>
-    </ul>
-</nav>
 <div class="solutions view large-9 medium-8 columns content">
     <h3><?= h($solution->id) ?></h3>
     <table class="vertical-table">
