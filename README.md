@@ -12,7 +12,7 @@ PROBLEMS
 
 add to your __config/bootstrap.php__
 
-    Plugin::loadAll(['KoVicky' => ['routes' => true, 'autoload' => true]]);
+    Plugin::load('KoVicky',['routes' => true]);
 
 ## Create database tables
 
