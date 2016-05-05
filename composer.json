@@ -1,5 +1,5 @@
 {
-    "name": "cakephp/KoVicky",
+    "name": "robjuz/cakephp-kovicky",
     "description": "wiki plugin for CakePHP",
     "type": "cakephp-plugin",
     "require": {
