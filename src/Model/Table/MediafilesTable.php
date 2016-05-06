@@ -36,10 +36,6 @@ class MediafilesTable extends Table
             'foreignKey' => 'solution_id',
             'joinType' => 'INNER'
         ]);
-        $this->belongsTo('KoVicky.Users', [
-            'foreignKey' => 'user_id',
-            'joinType' => 'INNER'
-        ]);
     }
 
     /**
@@ -70,7 +66,6 @@ class MediafilesTable extends Table
     public function buildRules(RulesChecker $rules)
     {
         $rules->add($rules->existsIn(['solution_id'], 'Solutions'));
-        $rules->add($rules->existsIn(['user_id'], 'Users'));
         return $rules;
     }
 }
