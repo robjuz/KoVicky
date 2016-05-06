@@ -34,7 +34,7 @@ class ProblemsController extends AppController
     public function view($id = null)
     {
         $problem = $this->Problems->get($id, [
-            'contain' => ['Categories', 'Solutions']
+            'contain' => ['Categories', 'Solutions' => ['Mediafiles']]
         ]);
 
         $this->set('problem', $problem);

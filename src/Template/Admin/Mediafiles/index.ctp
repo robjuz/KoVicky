@@ -5,7 +5,6 @@
             <tr>
                 <th><?= $this->Paginator->sort('id') ?></th>
                 <th><?= $this->Paginator->sort('solution_id') ?></th>
-                <th><?= $this->Paginator->sort('user_id') ?></th>
                 <th><?= $this->Paginator->sort('file') ?></th>
                 <th><?= $this->Paginator->sort('created') ?></th>
                 <th><?= $this->Paginator->sort('modified') ?></th>
@@ -17,8 +16,7 @@
             <tr>
                 <td><?= $this->Number->format($mediafile->id) ?></td>
                 <td><?= $mediafile->has('solution') ? $this->Html->link($mediafile->solution->id, ['controller' => 'Solutions', 'action' => 'view', $mediafile->solution->id]) : '' ?></td>
-                <td><?= $mediafile->has('user') ? $this->Html->link($mediafile->user->id, ['controller' => 'Users', 'action' => 'view', $mediafile->user->id]) : '' ?></td>
-                <td><?= h($mediafile->file) ?></td>
+                <td><?= h($mediafile->file_url) ?></td>
                 <td><?= h($mediafile->created) ?></td>
                 <td><?= h($mediafile->modified) ?></td>
                 <td class="actions">

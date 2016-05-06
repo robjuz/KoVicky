@@ -3,7 +3,8 @@
 	'KoVicky.bootstrap.min',
 	'KoVicky.bootstrap-material-design.min',
 	'KoVicky.ripples.min',
-	'KoVicky.global'
+	'KoVicky.global',
+	'KoVicky.dropzone'
 ]) ?>
 
 <?= $this->Html->script([
@@ -11,7 +12,6 @@
 	'KoVicky.bootstrap.min',
 	'KoVicky.material.min',
 	'KoVicky.ripples.min', 
-	'KoVicky.global', 
 ]); ?>
 
 <?= $this->fetch('css') ?>

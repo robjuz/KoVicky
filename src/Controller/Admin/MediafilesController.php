@@ -17,11 +17,10 @@ class MediafilesController extends AppController
         $data = $this->request->data['file'];
 
         $file->file_name = $data['name'];
-        $file->file_url = "uploads/".time().'-'.$data['name'];
-        $file->user_id = 1; //TODO use Auth
+        $file->file_url = "/uploads/".time().'-'.$data['name'];
         $file->solution_id = $id;
         
-        if(move_uploaded_file($data['tmp_name'],$file->file_url)){
+        if(move_uploaded_file($data['tmp_name'],WWW_ROOT.$file->file_url)){
             $this->Mediafiles->save($file);
         }
     }
@@ -34,7 +33,7 @@ class MediafilesController extends AppController
     public function index()
     {
         $this->paginate = [
-            'contain' => ['Solutions', 'Users']
+            'contain' => ['Solutions']
         ];
         $mediafiles = $this->paginate($this->Mediafiles);
 
@@ -52,7 +51,7 @@ class MediafilesController extends AppController
     public function view($id = null)
     {
         $mediafile = $this->Mediafiles->get($id, [
-            'contain' => ['Solutions', 'Users']
+            'contain' => ['Solutions']
         ]);
 
         $this->set('mediafile', $mediafile);
@@ -85,8 +84,7 @@ class MediafilesController extends AppController
             }
         }
         $solutions = $this->Mediafiles->Solutions->find('list', ['limit' => 200]);
-        $users = $this->Mediafiles->Users->find('list', ['limit' => 200]);
-        $this->set(compact('mediafile', 'solutions', 'users'));
+        $this->set(compact('mediafile', 'solutions'));
         $this->set('_serialize', ['mediafile']);
     }
 
