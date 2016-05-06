@@ -24,11 +24,11 @@
     </table>
     <div class="row">
         <h4><?= __('Thesis') ?></h4>
-        <?= $this->Text->autoParagraph(h($problem->thesis)); ?>
+        <?= $problem->thesis; ?>
     </div>
     <div class="row">
         <h4><?= __('Description') ?></h4>
-        <?= $this->Text->autoParagraph(h($problem->description)); ?>
+        <?= $problem->description; ?>
     </div>
     <div class="related">
         <h4><?= __('Related Solutions') ?></h4>
