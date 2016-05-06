@@ -13,6 +13,10 @@ PROBLEMS
 add to your __config/bootstrap.php__
 
     Plugin::load('KoVicky',['routes' => true]);
+    
+add to your webroots folder _(webserver need write access)_
+
+    /webroot/uploads
 
 ## Create database tables
 
