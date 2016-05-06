@@ -10,6 +10,8 @@
             echo $this->Form->input('description',['class' => 'wysiwyg']);
         ?>
     </fieldset>
-    <?= $this->Form->button(__('Submit')) ?>
+    <fieldset>
+        <?= $this->Form->button(__('Submit')) ?>
+    </fieldset>
     <?= $this->Form->end() ?>
 </div>
