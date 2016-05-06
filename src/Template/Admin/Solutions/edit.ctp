@@ -37,8 +37,9 @@
             </span>
         </div>
     </div>
-
-    <?= $this->Form->button(__('Submit')) ?>
+    <fieldset>
+        <?= $this->Form->button(__('Submit')) ?>
+    </fieldset>
     <?= $this->Form->end() ?>
 </div>
 
