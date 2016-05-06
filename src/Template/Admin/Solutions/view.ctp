@@ -24,7 +24,7 @@
     </table>
     <div class="row">
         <h4><?= __('Description') ?></h4>
-        <?= $this->Text->autoParagraph(h($solution->description)); ?>
+        <?= $solution->description; ?>
     </div>
     <div class="related">
         <h4><?= __('Related Mediafiles') ?></h4>
