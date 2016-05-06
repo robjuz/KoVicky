@@ -10,8 +10,8 @@
             echo $this->Form->input('description',['class' => 'wysiwyg']);
         ?>
     </fieldset>
-    <fieldset>
+    <p style="margin:1.125rem 0;">
         <?= $this->Form->button(__('Submit')) ?>
-    </fieldset>
+    </p>
     <?= $this->Form->end() ?>
 </div>
