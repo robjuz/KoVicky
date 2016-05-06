@@ -9,9 +9,9 @@
             echo $this->Form->input('thesis',['class' => 'wysiwyg']);
             echo $this->Form->input('description',['class' => 'wysiwyg']);
         ?>
+        <p style="margin:1.125rem 0;">
+            <?= $this->Form->button(__('Submit')) ?>
+        </p>
     </fieldset>
-    <p style="margin:1.125rem 0;">
-        <?= $this->Form->button(__('Submit')) ?>
-    </p>
     <?= $this->Form->end() ?>
 </div>
