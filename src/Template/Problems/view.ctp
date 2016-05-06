@@ -72,12 +72,7 @@
                                                 <div class="dz-image">
                                                     <img data-dz-thumbnail="" alt="<?= $mediafile->file_name ?>" src="<?= $mediafile->file_url ?>" style="width: 100%">
                                                 </div>  
-                                                <div class="dz-details">    
-                                                    <div class="dz-size">
-                                                        <span data-dz-size="">
-                                                            <strong>0.4</strong> MB
-                                                        </span>
-                                                    </div>    
+                                                <div class="dz-details">  
                                                     <div class="dz-filename">
                                                         <span data-dz-name="">
                                                             <?= $this->Html->link($mediafile->file_name, $mediafile->file_url,['target' => 'blank']) ?>
