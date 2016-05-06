@@ -54,7 +54,7 @@ class SolutionsController extends AppController
     {
         if ($id != null) {
             $solution = $this->Solutions->get($id, [
-                'contain' => []
+                'contain' => ['Mediafiles']
             ]);
         } else {
             $solution = $this->Solutions->newEntity();
