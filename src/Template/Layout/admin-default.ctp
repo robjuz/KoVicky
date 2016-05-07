@@ -3,7 +3,8 @@
     'KoVicky.cake',
     'KoVicky.base',
     'KoVicky.select2.min',
-    'KoVicky.dropzone'
+    'KoVicky.dropzone',
+    'KoVicky.global'
 ]) ?>
 
 <?= $this->Html->script([
