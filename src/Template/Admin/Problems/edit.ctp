@@ -12,7 +12,7 @@ $this->Form->templates([
             echo $this->Form->input('photo',['type' => 'file', 'label' => false]);
             echo $this->Form->input('title', ['style' => 'width: 75%']);
             echo $this->Form->input('parent_id', ['options' => $parentProblems, 'empty' => true, 'style' => 'width: 75%']);
-            echo $this->Form->input('category_id', ['options' => $categories]);
+            echo $this->Form->input('category_id', ['options' => $categories,'style' => 'width: 75%']);
             echo $this->Form->input('thesis',['class' => 'wysiwyg']);
             echo $this->Form->input('description',['class' => 'wysiwyg']);
         ?>
