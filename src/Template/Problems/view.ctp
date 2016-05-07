@@ -1,14 +1,12 @@
 <div class="col-xs-12">
     <div class="well">
+        <div id="problem-image"><img src="/uploads/problems/photo/<?= $problem->photo_dir ?>/<?= $problem->photo ?>"></div>
         <h3>
             <?= h($problem->title) ?>
             <small>
                 <?= $problem->has('category') ? $this->Html->link($problem->category->title, ['controller' => 'Categories', 'action' => 'view', $problem->category->id]) : '' ?>
             </small>
         </h3>
-<!--         <p class="lead">
-            <?= __('by {0}', $problem->user->username) ?>
-        </p> -->
         <p>
             <span class="glyphicon glyphicon-time"></span>
             <?= __('Created on {0}',h($problem->created)) ?>
