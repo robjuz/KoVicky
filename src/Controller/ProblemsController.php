@@ -16,9 +16,19 @@ class ProblemsController extends AppController
      *
      * @return \Cake\Network\Response|null
      */
-    public function index()
+    public function index($category_id = null)
     {
-        $problems = $this->Problems->find('all', ['limit' => 10]);
+        if($category_id != null) {
+            $problems = $this->Problems->find('all', [
+                'contain' => ['Categories']
+            ])
+                ->where(['Categories.id ' => $category_id]);
+        } else {
+            $problems = $this->Problems->find('all', [
+            'limit' => 10,
+        ]);
+
+        }
 
         $this->set(compact('problems'));
         $this->set('_serialize', ['problems']);
