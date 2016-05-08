@@ -1,4 +1,4 @@
-<div class="mediafiles form large-9 medium-8 columns content">
+<div class="col-xs-12">
     <?= $this->Form->create($mediafile) ?>
     <fieldset>
         <legend><?= __('Edit Mediafile') ?></legend>

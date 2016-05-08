@@ -1,21 +1,33 @@
 <?php
 $this->Form->templates([
-   'fileContainer' => '<div id="problem-image"><div><img src="/uploads/problems/photo/'.$problem->photo_dir.'/'.$problem->photo.'"></div>{{content}}</div>'
+   'fileContainer' => '<div id="problem-image"><div id="image-container"><img src="/uploads/problems/photo/'.$problem->photo_dir.'/'.$problem->photo.'"></div>{{content}}</div>'
 ]);
 ?>
-<div class="problems form large-9 medium-8 columns content">
+<div class="col-xs-12">
     <?= $this->Form->create($problem,['type' => 'file']) ?>
     <fieldset>
         <legend><?= __('Add/Edit Problem') ?></legend>
-        <?php
-            echo $this->Html->image($problem->photo_dir.'/<prefix>_'.$problem->photo);
-            echo $this->Form->input('photo',['type' => 'file', 'label' => false]);
-            echo $this->Form->input('title', ['style' => 'width: 75%']);
-            echo $this->Form->input('parent_id', ['options' => $parentProblems, 'empty' => true, 'style' => 'width: 75%']);
-            echo $this->Form->input('category_id', ['options' => $categories,'style' => 'width: 75%']);
-            echo $this->Form->input('thesis',['class' => 'wysiwyg']);
-            echo $this->Form->input('description',['class' => 'wysiwyg']);
-        ?>
+            <div class="row">
+                <div class="col-xs-8">
+                    <div class="row">
+                        <div class="col-xs-12">
+                            <?= $this->Form->input('title'); ?>
+                        </div>
+                        <div class="col-xs-12 col-sm-6">
+                            <?= $this->Form->input('parent_id', ['options' => $parentProblems, 'empty' => true]); ?>
+                        </div>
+                        <div class="col-xs-12 col-sm-6">
+                            <?= $this->Form->input('category_id', ['options' => $categories]); ?>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-4">
+                    <?= $this->Form->input('photo',['type' => 'file', 'label' => false]); ?>
+                </div>
+            </div>
+            <?= $this->Form->input('thesis',['class' => 'wysiwyg']); ?>
+            <?= $this->Form->input('description',['class' => 'wysiwyg']); ?>
+    
         <p style="margin:1.125rem 0;">
             <?= $this->Form->button(__('Submit')) ?>
         </p>
