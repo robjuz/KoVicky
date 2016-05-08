@@ -19,18 +19,48 @@
         <?php endif ?>
 
         <hr>
+        <h4> <?= __('Thesis:') ?> </h4>
         <?= $problem->thesis ?>
         <hr>
+        <h4> <?= __('Description:') ?> </h4>
         <?= $problem->description ?>
 
     </div>
 
-    <div id="solutions">
-        <div class="well">
+    <div id="related-problems" class="well">
+        <h3> <?= __('Related Problems:') ?> </h3>
+        <div class="row">
+        <?php foreach ($problem->child_problems as $child_problem) : ?>
+            <div class="col-sm-4 col-md-3">
+                <div class="thumbnail">
+                    <img src="/uploads/problems/photo/<?= $child_problem->photo_dir ?>/<?= $child_problem->photo ?>" alt="IMAGE">
+                    <div class="caption">
+                        <h3><?= $child_problem->title ?></h3>
+                        <p> <?= $this->Text->truncate(
+                                $child_problem->description,
+                                128,
+                                [
+                                    'ellipsis' => '...',
+                                    'exact' => false
+                                ]
+                            ); ?>
+                        </p>
+                        <p class="">
+                            <?= $this->Html->link(__('Read more'),['action' => 'view', $child_problem->id], ['class' => 'btn btn-primary']); ?>
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <?php endforeach; ?>
+        </div>
+    </div>
 
+<?php if (!empty($problem->solutions)): ?>
+    <div id="related-solutions">
+        <div class="well">
+        <h3> <?= __('Relatd Solutions:') ?> </h3>
         <?php 
         $solutionNumber = 0;
-        if (!empty($problem->solutions)):
             foreach ($problem->solutions as $solution): ?>
                 <div class="panel panel-default">
                     <div class="panel-heading">
@@ -83,19 +113,14 @@
                                     </div>
                                 <?php
                                 endif;
-                                ?>
-                                
+                                ?>                             
                             </div>
                         </div>
-
                     </div>
-
                 </div>
             <?php endforeach; ?>
-        <?php endif; ?>
         </div>
     </div>
-
-
+<?php endif; ?>
 
 </div>

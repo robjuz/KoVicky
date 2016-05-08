@@ -34,8 +34,10 @@ class ProblemsController extends AppController
     public function view($id = null)
     {
         $problem = $this->Problems->get($id, [
-            'contain' => ['Categories', 'Solutions' => ['Mediafiles']]
+            'contain' => ['ChildProblems','Categories', 'Solutions' => ['Mediafiles']]
         ]);
+
+        //debug($problem);
 
         $this->set('problem', $problem);
         $this->set('_serialize', ['problem']);
