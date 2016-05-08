@@ -19,3 +19,7 @@
 #problem-image img {
 	width: 100%;
 }
+
+.paginator {
+	text-align: center;
+}

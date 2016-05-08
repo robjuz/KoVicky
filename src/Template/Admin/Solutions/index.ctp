@@ -1,6 +1,6 @@
-<div class="solutions index large-9 medium-8 columns content">
+<div class="col-xs-12">
     <h3><?= __('Solutions') ?></h3>
-    <table cellpadding="0" cellspacing="0">
+    <table class="table table-striped">
         <thead>
             <tr>
                 <th><?= $this->Paginator->sort('id') ?></th>
@@ -28,12 +28,5 @@
             <?php endforeach; ?>
         </tbody>
     </table>
-    <div class="paginator">
-        <ul class="pagination">
-            <?= $this->Paginator->prev('< ' . __('previous')) ?>
-            <?= $this->Paginator->numbers() ?>
-            <?= $this->Paginator->next(__('next') . ' >') ?>
-        </ul>
-        <p><?= $this->Paginator->counter() ?></p>
-    </div>
+    <?= $this->element('paginator') ?>
 </div>
