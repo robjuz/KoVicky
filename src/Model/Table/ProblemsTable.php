@@ -87,7 +87,9 @@ class ProblemsTable extends Table
             ->notEmpty('title')
             ->notEmpty('category_id')
             ->allowEmpty('thesis')
-            ->allowEmpty('description');
+            ->allowEmpty('description')
+            ->requirePresence('photo', 'create')
+            ->allowEmpty('photo', 'update');
 
         return $validator;
     }
