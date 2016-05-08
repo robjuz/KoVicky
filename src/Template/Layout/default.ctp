@@ -1,4 +1,4 @@
-
+<head>
 <?= $this->Html->css([
 	'KoVicky.bootstrap.min',
 	'KoVicky.bootstrap-material-design.min',
@@ -16,7 +16,8 @@
 
 <?= $this->fetch('css') ?>
 <?= $this->fetch('script') ?>
-
+</head>
+<body>
 <div class="container" >
     <div class="row">
         <?= $this->Flash->render() ?>
@@ -32,4 +33,4 @@
 <footer>
     <?= $this->Html->scriptBlock('$.material.init()') ?>
 </footer>
-
+</body>
