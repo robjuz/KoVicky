@@ -4,7 +4,7 @@
         <h3>
             <?= h($problem->title) ?>
             <small>
-                <?= $problem->has('category') ? $this->Html->link($problem->category->title, ['controller' => 'Categories', 'action' => 'view', $problem->category->id]) : '' ?>
+                <?= $problem->has('category') ? $this->Html->link($problem->category->title, ['controller' => 'Problems', 'action' => 'index', $problem->category->id]) : '' ?>
             </small>
         </h3>
         <p>
