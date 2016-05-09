@@ -1,13 +1,12 @@
-<div class="problems view large-9 medium-8 columns content">
-    <h3><?= h($problem->title) ?></h3>
-    <table class="vertical-table">
-        <tr>
-            <th><?= __('Category') ?></th>
-            <td><?= $problem->has('category') ? $this->Html->link($problem->category->title, ['controller' => 'Categories', 'action' => 'view', $problem->category->id]) : '' ?></td>
-        </tr>
+<div class="col-xs-12">
+    <table class="table">
         <tr>
             <th><?= __('Title') ?></th>
             <td><?= h($problem->title) ?></td>
+        </tr>
+        <tr>
+            <th><?= __('Category') ?></th>
+            <td><?= $problem->has('category') ? $this->Html->link($problem->category->title, ['controller' => 'Categories', 'action' => 'view', $problem->category->id]) : '' ?></td>
         </tr>
         <tr>
             <th><?= __('Id') ?></th>
@@ -22,37 +21,34 @@
             <td><?= h($problem->modified) ?></td>
         </tr>
     </table>
-    <div class="row">
-        <h4><?= __('Thesis') ?></h4>
-        <?= $problem->thesis; ?>
-    </div>
-    <div class="row">
-        <h4><?= __('Description') ?></h4>
-        <?= $problem->description; ?>
-    </div>
+
+    <hr>
+    <h4><?= __('Thesis') ?></h4>
+    <?= $problem->thesis; ?>
+    <hr>
+    <h4><?= __('Description') ?></h4>
+    <?= $problem->description; ?>
+    <hr>
+    
     <div class="related">
         <h4><?= __('Related Solutions') ?></h4>
         <?php if (!empty($problem->solutions)): ?>
-        <table cellpadding="0" cellspacing="0">
+        <table class="table">
             <tr>
                 <th><?= __('Id') ?></th>
-                <th><?= __('Problem Id') ?></th>
                 <th><?= __('Description') ?></th>
                 <th><?= __('Created') ?></th>
                 <th><?= __('Modified') ?></th>
                 <th class="actions"><?= __('Actions') ?></th>
             </tr>
-            <?php foreach ($problem->solutions as $solutions): ?>
+            <?php foreach ($problem->solutions as $solution): ?>
             <tr>
-                <td><?= h($solutions->id) ?></td>
-                <td><?= h($solutions->problem_id) ?></td>
-                <td><?= h($solutions->description) ?></td>
-                <td><?= h($solutions->created) ?></td>
-                <td><?= h($solutions->modified) ?></td>
+                <td><?= h($solution->id) ?></td>
+                <td id="description-cell"><?= strip_tags($solution->description) ?></td>
+                <td><?= h($solution->created) ?></td>
+                <td><?= h($solution->modified) ?></td>
                 <td class="actions">
-                    <?= $this->Html->link(__('View'), ['controller' => 'Solutions', 'action' => 'view', $solutions->id]) ?>
-                    <?= $this->Html->link(__('Edit'), ['controller' => 'Solutions', 'action' => 'edit', $solutions->id]) ?>
-                    <?= $this->Form->postLink(__('Delete'), ['controller' => 'Solutions', 'action' => 'delete', $solutions->id], ['confirm' => __('Are you sure you want to delete # {0}?', $solutions->id)]) ?>
+                    <?= $this->element('actionCell',['controller' => 'Solutions','item' => $solution]) ?>
                 </td>
             </tr>
             <?php endforeach; ?>
