@@ -22,9 +22,7 @@
                 <td><?= h($problem->created) ?></td>
                 <td><?= h($problem->modified) ?></td>
                 <td class="actions">
-                    <?= $this->Html->link(__('View'), ['action' => 'view', $problem->id]) ?>
-                    <?= $this->Html->link(__('Edit'), ['action' => 'edit', $problem->id]) ?>
-                    <?= $this->Form->postLink(__('Delete'), ['action' => 'delete', $problem->id], ['confirm' => __('Are you sure you want to delete # {0}?', $problem->id)]) ?>
+                    <?= $this->element('actionCell',['controller' => 'Problems','item' => $problem]) ?>
                 </td>
             </tr>
             <?php endforeach; ?>

@@ -20,9 +20,7 @@
                 <td><?= h($mediafile->created) ?></td>
                 <td><?= h($mediafile->modified) ?></td>
                 <td class="actions">
-                    <?= $this->Html->link(__('View'), ['action' => 'view', $mediafile->id]) ?>
-                    <?= $this->Html->link(__('Edit'), ['action' => 'edit', $mediafile->id]) ?>
-                    <?= $this->Form->postLink(__('Delete'), ['action' => 'delete', $mediafile->id], ['confirm' => __('Are you sure you want to delete # {0}?', $mediafile->id)]) ?>
+                    <?= $this->element('actionCell',['controller' => 'Mediafiles','item' => $mediafile]) ?>
                 </td>
             </tr>
             <?php endforeach; ?>

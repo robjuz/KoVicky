@@ -20,9 +20,7 @@
                 <td><?= h($solution->modified) ?></td>
                 <td><?= $solution->is_active ? 'YES' : 'NO' ?></td>
                 <td class="actions">
-                    <?= $this->Html->link(__('View'), ['action' => 'view', $solution->id]) ?>
-                    <?= $this->Html->link(__('Edit'), ['action' => 'edit', $solution->id]) ?>
-                    <?= $this->Form->postLink(__('Delete'), ['action' => 'delete', $solution->id], ['confirm' => __('Are you sure you want to delete # {0}?', $solution->id)]) ?>
+                    <?= $this->element('actionCell',['controller' => 'Solutions','item' => $solution]) ?>
                 </td>
             </tr>
             <?php endforeach; ?>
