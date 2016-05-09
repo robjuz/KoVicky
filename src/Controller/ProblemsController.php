@@ -2,6 +2,7 @@
 namespace KoVicky\Controller;
 
 use KoVicky\Controller\AppController;
+use Cake\Event\Event;
 
 /**
  * Problems Controller
@@ -10,6 +11,11 @@ use KoVicky\Controller\AppController;
  */
 class ProblemsController extends AppController
 {
+
+    public function beforeFilter(Event $event)
+    {
+        $this->Auth->allow(['index', 'view']);
+    }
 
     /**
      * Index method

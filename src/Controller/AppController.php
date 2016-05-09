@@ -59,9 +59,4 @@ class AppController extends BaseController
             $this->viewBuilder()->layout('admin-default');
         }
     }
-
-    public function beforeFilter(Event $event)
-    {
-        $this->Auth->allow(['index', 'view']);
-    }
 }
