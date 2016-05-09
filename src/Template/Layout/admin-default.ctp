@@ -4,6 +4,7 @@
     'KoVicky.bootstrap-material-design.min',
     'KoVicky.ripples.min',
     'KoVicky.dropzone',
+    'KoVicky.croppic',
     'KoVicky.global'
 ]) ?>
 
@@ -13,6 +14,7 @@
     'KoVicky.bootstrap.min',
     'KoVicky.material.min',
     'KoVicky.dropzone', 
+    'KoVicky.croppic.min', 
     'KoVicky.ripples.min', 
     'KoVicky.global', 
 ]); ?>

@@ -18,11 +18,6 @@ class AddImageToProblems extends AbstractMigration
             'limit' => 255,
             'null' => false,
         ]);
-        $table->addColumn('photo_dir', 'string', [
-            'default' => null,
-            'limit' => 255,
-            'null' => false,
-        ]);
         $table->update();
     }
 }

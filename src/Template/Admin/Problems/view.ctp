@@ -1,7 +1,9 @@
 <div class="col-xs-12">
     <div class="row">
-    <div class="problem-image col-xs-12 col-sm-4 col-sm-push-8 text-center"><img src="/uploads/problems/photo/<?= $problem->photo_dir ?>/<?= $problem->photo ?>"></div>
-        <div class="col-xs-12 col-sm-8 col-sm-pull-4">
+        <div class="problem-image col-xs-12 col-sm-6 col-sm-push-6 text-center">
+            <img class="img-responsive" src="<?= $problem->photo ?>">
+        </div>
+        <div class="col-xs-12 col-sm-6 col-sm-pull-6">
             <table class="table">
                 <tr>
                     <th><?= __('Title') ?></th>
