@@ -1,6 +1,6 @@
 <?php
 $this->Form->templates([
-   'fileContainer' => '<div id="problem-image"><div id="image-container"><img src="/uploads/problems/photo/'.$problem->photo_dir.'/'.$problem->photo.'"></div>{{content}}</div>'
+   'fileContainer' => '<div class="problem-image text-center"><div id="image-container"><img src="/uploads/problems/photo/'.$problem->photo_dir.'/'.$problem->photo.'"></div>{{content}}</div>'
 ]);
 ?>
 <div class="col-xs-12">
