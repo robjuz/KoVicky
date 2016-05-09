@@ -1,6 +1,6 @@
 <div class="col-xs-12">
     <div class="well">
-        <div class="problem-image pull-right"><img src="/uploads/problems/photo/<?= $problem->photo_dir ?>/<?= $problem->photo ?>"></div>
+        <div class="problem-image pull-right"><img class="img-responsive" src="<?= $problem->photo ?>"></div>
         <h3>
             <?= h($problem->title) ?>
             <small>

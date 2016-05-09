@@ -2,11 +2,6 @@
     margin-bottom: 15px;
 }
 
-.problem-image img {
-	max-width: 100%;
-	max-height: 200px;
-}
-
 .paginator {
 	text-align: center;
 }
@@ -16,4 +11,11 @@
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
+}
+
+#image-upload {
+	float: right;
+	width: 480px;
+	height: 300px;
+	position:relative; /* or fixed or absolute */
 }
