@@ -1,6 +1,6 @@
 <div class="col-xs-12">
     <div class="well">
-        <div id="problem-image"><img src="/uploads/problems/photo/<?= $problem->photo_dir ?>/<?= $problem->photo ?>"></div>
+        <div class="problem-image pull-right"><img src="/uploads/problems/photo/<?= $problem->photo_dir ?>/<?= $problem->photo ?>"></div>
         <h3>
             <?= h($problem->title) ?>
             <small>
@@ -32,7 +32,7 @@
         <div class="row">
         <?php foreach ($problem->child_problems as $child_problem) : ?>
             <div class="col-sm-4 col-md-3">
-                <div class="thumbnail">
+                <div class="thumbnail problem-image">
                     <img src="/uploads/problems/photo/<?= $child_problem->photo_dir ?>/<?= $child_problem->photo ?>" alt="IMAGE">
                     <div class="caption">
                         <h3><?= $child_problem->title ?></h3>

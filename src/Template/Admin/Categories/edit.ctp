@@ -1,4 +1,4 @@
-<div class="categories form large-9 medium-8 columns content">
+<div class="col-xs-12">
     <?= $this->Form->create($category) ?>
     <fieldset>
         <legend><?= __('Edit Category') ?></legend>

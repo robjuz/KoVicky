@@ -1,49 +1,91 @@
-
+<head>
 <?= $this->Html->css([
-    'KoVicky.cake',
-    'KoVicky.base',
-    'KoVicky.select2.min',
+    'KoVicky.bootstrap.min',
+    'KoVicky.bootstrap-material-design.min',
+    'KoVicky.ripples.min',
     'KoVicky.dropzone',
     'KoVicky.global'
 ]) ?>
 
 <?= $this->Html->script([
     'KoVicky.jquery-2.2.2.min', 
-    'KoVicky.select2.min',
+    'KoVicky.tinymce/tinymce.min.js',
+    'KoVicky.bootstrap.min',
+    'KoVicky.material.min',
     'KoVicky.dropzone', 
+    'KoVicky.ripples.min', 
     'KoVicky.global', 
-    'KoVicky.tinymce/tinymce.min.js']); ?>
+]); ?>
+
 
 <?= $this->fetch('css') ?>
 <?= $this->fetch('script') ?>
+</head>
+<body>
+    <div class="container">
+        <div class="row">
+            <?= $this->Flash->render() ?>
+        </div>
+    </div>
+    <div class="container">
 
-<nav class="top-bar expanded" data-topbar role="navigation">
-    <ul class="title-area large-3 medium-4 columns">
-        <li class="name">
-            <h1><a href=""><?= $this->fetch('title') ?></a></h1>
-        </li>
-    </ul>
-</nav>
-
-<?= $this->Flash->render() ?>
-
-<div class="container clearfix">
-    
-    <nav class="large-3 medium-4 columns" id="actions-sidebar">
-        <ul class="side-nav">
-            <li class="heading"><?= __('Actions') ?></li>
-            <li><?= $this->Html->link(__('Problems List'), ['controller' => 'Problems', 'action' => 'index']) ?> </li>
-            <li><?= $this->Html->link(__('New Problem'), ['controller' => 'Problems','action' => 'edit']) ?> </li>
-            <li><?= $this->Html->link(__('Solutions List'), ['controller' => 'Solutions', 'action' => 'index']) ?> </li>
-            <li><?= $this->Html->link(__('New Solution'), ['controller' => 'Solutions', 'action' => 'edit']) ?> </li>
-            <li><?= $this->Html->link(__('Categories List'), ['controller' => 'Categories', 'action' => 'index']) ?> </li>
-            <li><?= $this->Html->link(__('New Category'), ['controller' => 'Categories', 'action' => 'edit']) ?> </li>
-            <li><?= $this->Html->link(__('Mediafiles List'), ['controller' => 'Mediafiles', 'action' => 'index']) ?> </li>
-        </ul>
+    <nav class="navbar navbar-default">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-responsive-collapse">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="javascript:void(0)">Brand</a>
+        </div>
+        <div class="navbar-collapse collapse navbar-responsive-collapse">
+          <ul class="nav navbar-nav">
+            <li class="dropdown">
+              <a href="http://fezvrasta.github.io/bootstrap-material-design/bootstrap-elements.html" data-target="#" class="dropdown-toggle" data-toggle="dropdown"><?= __('Problems') ?>
+                <b class="caret"></b>
+              </a>
+              <ul class="dropdown-menu">
+                <li><?= $this->Html->link(__('Problems List'), ['controller' => 'Problems', 'action' => 'index']) ?> </li>
+                <li><?= $this->Html->link(__('New Problem'), ['controller' => 'Problems','action' => 'edit']) ?> </li>
+              </ul>
+            </li>
+            <li class="dropdown">
+              <a href="http://fezvrasta.github.io/bootstrap-material-design/bootstrap-elements.html" data-target="#" class="dropdown-toggle" data-toggle="dropdown"><?= __('Solutions') ?>
+                <b class="caret"></b>
+              </a>
+              <ul class="dropdown-menu">
+                <li><?= $this->Html->link(__('Solutions List'), ['controller' => 'Solutions', 'action' => 'index']) ?> </li>
+                <li><?= $this->Html->link(__('New Solution'), ['controller' => 'Solutions', 'action' => 'edit']) ?> </li>
+              </ul>
+            </li>
+            <li class="dropdown">
+              <a href="http://fezvrasta.github.io/bootstrap-material-design/bootstrap-elements.html" data-target="#" class="dropdown-toggle" data-toggle="dropdown"><?= __('Categories') ?>
+                <b class="caret"></b>
+              </a>
+              <ul class="dropdown-menu">
+                <li><?= $this->Html->link(__('Categories List'), ['controller' => 'Categories', 'action' => 'index']) ?> </li>
+                <li><?= $this->Html->link(__('New Category'), ['controller' => 'Categories', 'action' => 'edit']) ?> </li>
+              </ul>
+            </li>
+            <li class="dropdown">
+              <a href="http://fezvrasta.github.io/bootstrap-material-design/bootstrap-elements.html" data-target="#" class="dropdown-toggle" data-toggle="dropdown"><?= __('Mediafiles') ?>
+                <b class="caret"></b>
+              </a>
+              <ul class="dropdown-menu">
+                <li><?= $this->Html->link(__('Mediafiles List'), ['controller' => 'Mediafiles', 'action' => 'index']) ?> </li>
+              </ul>
+            </li>
+          </ul>
+        </div>
+      </div>
     </nav>
 
-    <?= $this->fetch('content') ?>
+    <div class="row">
+        <?= $this->fetch('content') ?>
+    </div>
 
 </div>
 <footer>
 </footer>
+</body>

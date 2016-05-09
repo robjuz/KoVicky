@@ -6,7 +6,8 @@
         "php": ">=5.4.16",
         "cakephp/cakephp": "~3.0",
 	"cakephp/migrations": "@stable",
-	"davidyell/proffer": "~0.6"
+	"davidyell/proffer": "~0.6",
+    "holt59/cakephp3-bootstrap-helpers": "dev-master"
     },
     "require-dev": {
         "phpunit/phpunit": "*"

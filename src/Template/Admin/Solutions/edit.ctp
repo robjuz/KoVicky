@@ -1,4 +1,4 @@
-<div class="solutions form large-9 medium-8 columns content">
+<div class="col-xs-12">
     <?= $this->Form->create($solution) ?>
     <fieldset>
         <legend><?= __('Edit Solution') ?></legend>
