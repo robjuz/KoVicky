@@ -4,8 +4,7 @@
         <legend><?= __('Add/Edit Problem') ?></legend>
             <div class="row">
                 <div class="problem-image col-xs-12 col-sm-6 col-sm-push-6 text-center">
-                    <div id="image-upload">
-                        <img class="img-responsive" src="<?= $problem->photo ?>">
+                    <div id="image-upload" data-image-url="<?= $problem->photo ?>">
                     </div>
                 </div>
                 <div class="col-xs-12 col-sm-6 col-sm-pull-6">
@@ -22,7 +21,7 @@
                     </div>
                 </div>
             </div>
-            <?= $this->Form->hidden('photo',['id'=>'photo-url']) ?>
+            <!-- <?= $this->Form->hidden('photo',['id'=>'photo-url']) ?> -->
             <?= $this->Form->input('thesis',['class' => 'wysiwyg']); ?>
             <?= $this->Form->input('description',['class' => 'wysiwyg']); ?>
     

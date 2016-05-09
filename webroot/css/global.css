@@ -19,3 +19,7 @@
 	height: 300px;
 	position:relative; /* or fixed or absolute */
 }
+
+input[name="file-photo"] {
+	cursor: pointer;
+}

@@ -12,15 +12,26 @@ $(document).ready(function(){
         toolbar: 'undo redo | styleselect | bullist numlist outdent indent | link image',
 	});
 
-	var cropperOptions = {
-			zoomFactor:10,
-			doubleZoomControls:false,
-			rotateControls:false,
-			processInline:true,
-			outputUrlId:'photo-url',
-			cropUrl:'/ko-vicky/admin/problems/save-image',
-			onBeforeImgUpload: function(){$('#image-upload img').remove();}
-		}
-		
-		var cropperHeader = new Croppic('image-upload', cropperOptions);
+	console.log($("#image-upload").data('image-url'));
+
+  $("#image-upload").PictureCut({
+	    InputOfImageDirectory	: "photo",
+	    PluginFolderOnServer    : "/jquery.picture.cut/",
+	    FolderOnServer          : "/uploads/",
+	    EnableCrop              : true,
+	    CropWindowStyle         : "Bootstrap",
+	    CropModes				: {
+						            widescreen: true,
+						            letterbox: false,
+						            free   : false
+						        },
+		CropOrientation : false,
+		DefaultImageButton : $("#image-upload").data('image-url'),
+		ImageButtonCSS : {
+			              	border:"1px #CCC solid",
+			              	width : '100%',
+			              	height: 300,
+			            }
+  });
+                  
 });
