@@ -12,11 +12,9 @@ $(document).ready(function(){
         toolbar: 'undo redo | styleselect | bullist numlist outdent indent | link image',
 	});
 
-	console.log($("#image-upload").data('image-url'));
-
   $("#image-upload").PictureCut({
 	    InputOfImageDirectory	: "photo",
-	    PluginFolderOnServer    : "/jquery.picture.cut/",
+	    PluginFolderOnServer    : "/ko_vicky/js/picturecut/",
 	    FolderOnServer          : "/uploads/",
 	    EnableCrop              : true,
 	    CropWindowStyle         : "Bootstrap",
