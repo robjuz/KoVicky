@@ -23,6 +23,6 @@
         }
     },
     "scripts": {
-        "post-install-cmd": "App\\Console\\Installer::postInstall"
+        "post-install-cmd": "KoVicky\\Console\\Installer::postInstall"
     }
 }
