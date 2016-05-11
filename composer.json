@@ -23,6 +23,6 @@
         }
     },
     "scripts": {
-        "post-install-cmd": "KoVicky\\Console\\Installer::postInstall"
+        "post-package-install": "KoVicky\\Console\\Installer::postInstall"
     }
 }
