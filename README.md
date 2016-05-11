@@ -1,10 +1,10 @@
 # KoVicky
 wiki plugin for CakePHP 3.x
 ````
-PROBLEMS
-  ├──> SOLUTIONS
-  └──> PROBLEMS
-        └──> SOLUTIONS
+PROBLEM
+  ├──> DESCRIPTION
+  └──> RELATED PROBLEMS
+        └──> DESCRIPTION
 ````
 ## Install
 
