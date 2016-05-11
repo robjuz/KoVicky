@@ -21,8 +21,5 @@
             "KoVicky\\Test\\": "tests",
             "Cake\\Test\\": "./vendor/cakephp/cakephp/tests"
         }
-    },
-    "scripts": {
-        "pre-autoload-dump": "KoVicky\\Console\\Installer::postInstall"
     }
 }
