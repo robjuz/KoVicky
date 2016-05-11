@@ -18,7 +18,7 @@ class MediafilesController extends AppController
 
         $file->file_name = $data['name'];
         $file->file_url = "/uploads/".time().'-'.$data['name'];
-        $file->solution_id = $id;
+        $file->problem_id = $id;
         
         if(move_uploaded_file($data['tmp_name'],WWW_ROOT.$file->file_url)){
             $this->Mediafiles->save($file);
@@ -33,7 +33,7 @@ class MediafilesController extends AppController
     public function index()
     {
         $this->paginate = [
-            'contain' => ['Solutions']
+            'contain' => ['Problems']
         ];
         $mediafiles = $this->paginate($this->Mediafiles);
 
@@ -51,7 +51,7 @@ class MediafilesController extends AppController
     public function view($id = null)
     {
         $mediafile = $this->Mediafiles->get($id, [
-            'contain' => ['Solutions']
+            'contain' => ['Problems']
         ]);
 
         $this->set('mediafile', $mediafile);
@@ -83,8 +83,8 @@ class MediafilesController extends AppController
                 $this->Flash->error(__('The mediafile could not be saved. Please, try again.'));
             }
         }
-        $solutions = $this->Mediafiles->Solutions->find('list', ['limit' => 200]);
-        $this->set(compact('mediafile', 'solutions'));
+        $problems = $this->Mediafiles->Problems->find('list');
+        $this->set(compact('mediafile', 'problems'));
         $this->set('_serialize', ['mediafile']);
     }
 

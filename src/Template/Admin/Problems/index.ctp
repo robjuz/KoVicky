@@ -5,7 +5,6 @@
             <tr>
                 <th><?= $this->Paginator->sort('id') ?></th>
                 <th><?= $this->Paginator->sort('parent_id') ?></th>
-                <th><?= $this->Paginator->sort('category_id') ?></th>
                 <th><?= $this->Paginator->sort('title') ?></th>
                 <th><?= $this->Paginator->sort('created') ?></th>
                 <th><?= $this->Paginator->sort('modified') ?></th>
@@ -17,7 +16,6 @@
             <tr>
                 <td><?= $this->Number->format($problem->id) ?></td>
                 <td><?= $problem->has('parent_problem') ? $this->Html->link($problem->parent_problem->title, ['controller' => 'Problems', 'action' => 'view', $problem->parent_problem->id]) : '' ?></td>
-                <td><?= $problem->has('category') ? $this->Html->link($problem->category->title, ['controller' => 'Categories', 'action' => 'view', $problem->category->id]) : '' ?></td>
                 <td><?= h($problem->title) ?></td>
                 <td><?= h($problem->created) ?></td>
                 <td><?= h($problem->modified) ?></td>

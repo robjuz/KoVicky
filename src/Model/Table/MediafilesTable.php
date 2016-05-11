@@ -27,13 +27,13 @@ class MediafilesTable extends Table
         parent::initialize($config);
 
         $this->table('KoVicky_mediafiles');
-        $this->displayField('id');
+        $this->displayField('file_name');
         $this->primaryKey('id');
 
         $this->addBehavior('Timestamp');
 
-        $this->belongsTo('KoVicky.Solutions', [
-            'foreignKey' => 'solution_id',
+        $this->belongsTo('KoVicky.Problems', [
+            'foreignKey' => 'problem_id',
             'joinType' => 'INNER'
         ]);
     }
@@ -50,9 +50,6 @@ class MediafilesTable extends Table
             ->integer('id')
             ->allowEmpty('id', 'create');
 
-        $validator
-            ->allowEmpty('file');
-
         return $validator;
     }
 
@@ -65,7 +62,7 @@ class MediafilesTable extends Table
      */
     public function buildRules(RulesChecker $rules)
     {
-        $rules->add($rules->existsIn(['solution_id'], 'Solutions'));
+        $rules->add($rules->existsIn(['problem_id'], 'Problems'));
         return $rules;
     }
 }

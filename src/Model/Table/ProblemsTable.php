@@ -42,13 +42,12 @@ class ProblemsTable extends Table
             'className' => 'KoVicky.Problems',
             'foreignKey' => 'parent_id'
         ]);
-
-        $this->belongsTo('KoVicky.Categories', [
-            'foreignKey' => 'category_id',
-            'joinType' => 'INNER'
-        ]);
-        $this->hasMany('KoVicky.Solutions', [
+        $this->hasMany('KoVicky.Mediafiles', [
             'foreignKey' => 'problem_id'
+        ]);
+        $this->belongsTo('Users', [
+            'foreignKey' => 'user_id',
+            'joinType' => 'LEFT'
         ]);
     }
 
@@ -63,10 +62,8 @@ class ProblemsTable extends Table
         $validator
             ->integer('id')
             ->allowEmpty('id', 'create')
-            ->allowEmpty('parent_id')
+            ->notEmpty('parent_id')
             ->notEmpty('title')
-            ->notEmpty('category_id')
-            ->allowEmpty('thesis')
             ->allowEmpty('description')
             ->requirePresence('photo', 'create')
             ->allowEmpty('photo', 'update');
@@ -84,7 +81,6 @@ class ProblemsTable extends Table
     public function buildRules(RulesChecker $rules)
     {
         $rules->add($rules->existsIn(['parent_id'], 'ParentProblems'));
-        $rules->add($rules->existsIn(['category_id'], 'Categories'));
         return $rules;
     }
 }

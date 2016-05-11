@@ -1,7 +1,7 @@
 $(document).ready(function(){
 
-	$("div#solution-dropzone").dropzone({ 
-			url: $("div#solution-dropzone").data('action'),
+	$("div#problem-dropzone").dropzone({ 
+			url: $("div#problem-dropzone").data('action'),
 		}).addClass('dropzone');
 	
 

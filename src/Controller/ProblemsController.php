@@ -22,19 +22,11 @@ class ProblemsController extends AppController
      *
      * @return \Cake\Network\Response|null
      */
-    public function index($category_id = null)
+    public function index()
     {
-        if($category_id != null) {
-            $problems = $this->Problems->find('all', [
-                'contain' => ['Categories']
-            ])
-                ->where(['Categories.id ' => $category_id]);
-        } else {
-            $problems = $this->Problems->find('all', [
-            'limit' => 10,
-        ]);
-
-        }
+        //show only the 6 main problems
+        $problems = $this->Problems->find('all')
+                ->where(['parent_id is NULL']);
 
         $this->set(compact('problems'));
         $this->set('_serialize', ['problems']);
@@ -50,10 +42,8 @@ class ProblemsController extends AppController
     public function view($id = null)
     {
         $problem = $this->Problems->get($id, [
-            'contain' => ['ChildProblems','Categories', 'Solutions' => ['Mediafiles']]
+            'contain' => ['ChildProblems', 'Mediafiles']
         ]);
-
-        //debug($problem);
 
         $this->set('problem', $problem);
         $this->set('_serialize', ['problem']);

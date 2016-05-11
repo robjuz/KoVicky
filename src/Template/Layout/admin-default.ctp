@@ -53,24 +53,6 @@
               </ul>
             </li>
             <li class="dropdown">
-              <a href="http://fezvrasta.github.io/bootstrap-material-design/bootstrap-elements.html" data-target="#" class="dropdown-toggle" data-toggle="dropdown"><?= __('Solutions') ?>
-                <b class="caret"></b>
-              </a>
-              <ul class="dropdown-menu">
-                <li><?= $this->Html->link(__('Solutions List'), ['controller' => 'Solutions', 'action' => 'index']) ?> </li>
-                <li><?= $this->Html->link(__('New Solution'), ['controller' => 'Solutions', 'action' => 'edit']) ?> </li>
-              </ul>
-            </li>
-            <li class="dropdown">
-              <a href="http://fezvrasta.github.io/bootstrap-material-design/bootstrap-elements.html" data-target="#" class="dropdown-toggle" data-toggle="dropdown"><?= __('Categories') ?>
-                <b class="caret"></b>
-              </a>
-              <ul class="dropdown-menu">
-                <li><?= $this->Html->link(__('Categories List'), ['controller' => 'Categories', 'action' => 'index']) ?> </li>
-                <li><?= $this->Html->link(__('New Category'), ['controller' => 'Categories', 'action' => 'edit']) ?> </li>
-              </ul>
-            </li>
-            <li class="dropdown">
               <a href="http://fezvrasta.github.io/bootstrap-material-design/bootstrap-elements.html" data-target="#" class="dropdown-toggle" data-toggle="dropdown"><?= __('Mediafiles') ?>
                 <b class="caret"></b>
               </a>
