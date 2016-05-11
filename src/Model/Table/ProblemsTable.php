@@ -83,4 +83,10 @@ class ProblemsTable extends Table
         $rules->add($rules->existsIn(['parent_id'], 'ParentProblems'));
         return $rules;
     }
+
+    public function isOwnedBy($problemId, $userId)
+    {
+        return $this->exists(['id' => $problemId, 'user_id' => $userId]);
+    }
+
 }

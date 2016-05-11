@@ -58,5 +58,20 @@ class AppController extends BaseController
         if (isset($event->subject()->request->params['prefix']) and ($event->subject()->request->params['prefix'] === 'admin')) {
             $this->viewBuilder()->layout('admin-default');
         }
+
+        $this->set('activeUser',$this->Auth->user());
     }
+
+    public function isAuthorized($user = null)
+    {
+
+        // Only admins can access admin functions
+        if ($this->request->params['prefix'] === 'admin') {
+            return (bool)($user['id'] == 1);
+        }
+
+        // Default deny
+        return false;
+    }
+
 }

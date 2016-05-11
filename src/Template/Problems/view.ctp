@@ -4,7 +4,7 @@
         <h3>
             <?= h($problem->title) ?>
             <small>
-                <!-- <?= $problem->has('category') ? $this->Html->link($problem->category->title, ['controller' => 'Problems', 'action' => 'index', $problem->category->id]) : '' ?> -->
+
             </small>
         </h3>
         <p>
@@ -27,6 +27,7 @@
     <?php 
     if (!empty($problem->mediafiles)): ?>
     <div id="related-mediafiles" class="well">
+    <h3> <?= __('Mediafiles:') ?> </h3>
         <div class="dropzone dz-clickable dz-started">
         <?php
         foreach ($problem->mediafiles as $mediafile): ?>
