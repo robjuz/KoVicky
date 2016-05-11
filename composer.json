@@ -5,8 +5,8 @@
     "require": {
         "php": ">=5.4.16",
         "cakephp/cakephp": "~3.0",
-	"cakephp/migrations": "@stable",
-    "holt59/cakephp3-bootstrap-helpers": "dev-master"
+    	"cakephp/migrations": "@stable",
+        "holt59/cakephp3-bootstrap-helpers": "dev-master"
     },
     "require-dev": {
         "phpunit/phpunit": "*"
@@ -23,6 +23,6 @@
         }
     },
     "scripts": {
-        "post-package-install": "KoVicky\\Console\\Installer::postInstall"
+        "pre-autoload-dump": "KoVicky\\Console\\Installer::postInstall"
     }
 }
