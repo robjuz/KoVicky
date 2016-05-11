@@ -33,40 +33,41 @@ class Installer
      */
     public static function postInstall(Event $event)
     {
-        $io = $event->getIO();
+        echo 'Post install was called';
+        // $io = $event->getIO();
 
-        $rootDir = dirname(dirname(__DIR__));
+        // $rootDir = dirname(dirname(__DIR__));
 
-        static::createAppConfig($rootDir, $io);
-        static::createWritableDirectories($rootDir, $io);
+        // static::createAppConfig($rootDir, $io);
+        // static::createWritableDirectories($rootDir, $io);
 
-        // ask if the permissions should be changed
-        if ($io->isInteractive()) {
-            $validator = function ($arg) {
-                if (in_array($arg, ['Y', 'y', 'N', 'n'])) {
-                    return $arg;
-                }
-                throw new Exception('This is not a valid answer. Please choose Y or n.');
-            };
-            $setFolderPermissions = $io->askAndValidate(
-                '<info>Set Folder Permissions ? (Default to Y)</info> [<comment>Y,n</comment>]? ',
-                $validator,
-                10,
-                'Y'
-            );
+        // // ask if the permissions should be changed
+        // if ($io->isInteractive()) {
+        //     $validator = function ($arg) {
+        //         if (in_array($arg, ['Y', 'y', 'N', 'n'])) {
+        //             return $arg;
+        //         }
+        //         throw new Exception('This is not a valid answer. Please choose Y or n.');
+        //     };
+        //     $setFolderPermissions = $io->askAndValidate(
+        //         '<info>Set Folder Permissions ? (Default to Y)</info> [<comment>Y,n</comment>]? ',
+        //         $validator,
+        //         10,
+        //         'Y'
+        //     );
 
-            if (in_array($setFolderPermissions, ['Y', 'y'])) {
-                static::setFolderPermissions($rootDir, $io);
-            }
-        } else {
-            static::setFolderPermissions($rootDir, $io);
-        }
+        //     if (in_array($setFolderPermissions, ['Y', 'y'])) {
+        //         static::setFolderPermissions($rootDir, $io);
+        //     }
+        // } else {
+        //     static::setFolderPermissions($rootDir, $io);
+        // }
 
-        static::setSecuritySalt($rootDir, $io);
+        // static::setSecuritySalt($rootDir, $io);
 
-        if (class_exists('\Cake\Codeception\Console\Installer')) {
-            \Cake\Codeception\Console\Installer::customizeCodeceptionBinary($event);
-        }
+        // if (class_exists('\Cake\Codeception\Console\Installer')) {
+        //     \Cake\Codeception\Console\Installer::customizeCodeceptionBinary($event);
+        // }
     }
 
     /**
