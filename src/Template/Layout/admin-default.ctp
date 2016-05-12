@@ -24,9 +24,7 @@
 </head>
 <body>
     <div class="container">
-        <div class="row">
-            <?= $this->Flash->render() ?>
-        </div>
+        <?= $this->Flash->render() ?>
     </div>
     <div class="container">
         <?= $this->Element('admin-navbar') ?>

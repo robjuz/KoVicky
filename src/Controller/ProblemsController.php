@@ -13,6 +13,10 @@ class ProblemsController extends AppController
 {
 
     public function beforeFilter(Event $event)
+    {
+        $this->Auth->allow(['index', 'view']);
+    }
+
     /**
      * Index method
      *
@@ -41,11 +45,13 @@ class ProblemsController extends AppController
     public function view($id = null)
     {
         $problem = $this->Problems->get($id, [
-            'contain' => ['ChildProblems', 'Mediafiles']
+            'contain' => ['ChildProblems', 'Mediafiles', 'Users']
         ]);
 
         $this->set('problem', $problem);
         $this->set('_serialize', ['problem']);
+        
+        $this->set('isAllowedToEdit',$this->isAllowedToEdit($id,$this->Auth->user('id')));
     }
 
         /**
@@ -59,7 +65,7 @@ class ProblemsController extends AppController
     {
         if ($id != null) {
             $problem = $this->Problems->get($id, [
-                'contain' => []
+                'contain' => ['Mediafiles']
             ]);
         } else {
             $problem = $this->Problems->newEntity();
@@ -100,11 +106,15 @@ class ProblemsController extends AppController
             $problemId = (int)$this->request->params['pass'][0];
             if ($this->Problems->isOwnedBy($problemId, $user['id'])) {
                 return true;
-            } else if ($user['id'] == 1) {
+            } else if ($this->isAdmin()) {
                 return $this->redirect(['prefix' => 'admin', 'action' => 'edit', $problemId]);
             }
         }
 
         return parent::isAuthorized($user);
+    }
+
+    public function isAllowedToEdit($problemId = 0, $userId = 0) {
+        return (bool) $this->Problems->isOwnedBy($problemId, $userId) OR $this->isAdmin();
     }
 }

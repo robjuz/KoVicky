@@ -28,23 +28,6 @@ class ProblemsController extends AppController
     }
 
     /**
-     * View method
-     *
-     * @param string|null $id Problem id.
-     * @return \Cake\Network\Response|null
-     * @throws \Cake\Datasource\Exception\RecordNotFoundException When record not found.
-     */
-    public function view($id = null)
-    {
-        $problem = $this->Problems->get($id, [
-            'contain' => ['ParentProblems', 'ChildProblems']
-        ]);
-
-        $this->set('problem', $problem);
-        $this->set('_serialize', ['problem']);
-    }
-
-    /**
      * Edit method
      *
      * @param string|null $id Problem id.
@@ -55,7 +38,7 @@ class ProblemsController extends AppController
     {
         if ($id != null) {
             $problem = $this->Problems->get($id, [
-                'contain' => []
+                'contain' => ['Mediafiles', 'Users']
             ]);
         } else {
             $problem = $this->Problems->newEntity();
@@ -69,7 +52,6 @@ class ProblemsController extends AppController
             }
 
             $problem = $this->Problems->patchEntity($problem, $this->request->data);
-            $problem->user_id = $this->Auth->user('id');
             $problem->is_active = true;
             if ($this->Problems->save($problem)) {
                 $this->Flash->success(__('The problem has been saved.'));
@@ -79,7 +61,10 @@ class ProblemsController extends AppController
             }
         }
         $parentProblems = $this->Problems->find('treeList');
-        $this->set(compact('problem', 'categories', 'parentProblems'));
+        $users = $this->Problems->Users->find('list',[
+            'valueField' => 'username'
+            ]);
+        $this->set(compact('problem', 'users', 'parentProblems'));
         $this->set('_serialize', ['problem']);
     }
 

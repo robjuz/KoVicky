@@ -38,7 +38,6 @@ class AppController extends BaseController
 
         $this->loadComponent('RequestHandler');
         $this->loadComponent('Flash');
-        $this->loadComponent('Auth');
     }
 
     /**
@@ -67,9 +66,8 @@ class AppController extends BaseController
 
         // Only admins can access admin functions
         if ($this->request->params['prefix'] === 'admin') {
-            return (bool)($user['id'] == 1);
+            return (bool)parent::isAdmin();
         }
-
         // Default deny
         return false;
     }

@@ -28,16 +28,10 @@ class UsersTable extends Table
         parent::initialize($config);
 
         $this->table('users');
-        $this->displayField('id');
+        $this->displayField('username');
         $this->primaryKey('id');
 
-        $this->hasMany('KoVicky.Mediafiles', [
-            'foreignKey' => 'user_id'
-        ]);
         $this->hasMany('KoVicky.Problems', [
-            'foreignKey' => 'user_id'
-        ]);
-        $this->hasMany('KoVicky.Solutions', [
             'foreignKey' => 'user_id'
         ]);
     }

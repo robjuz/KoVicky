@@ -1,4 +1,5 @@
 <?= $this->Html->link($this->Html->icon('eye-open'), [
+                        'prefix' => false,
                         'controller' => $controller, 
                         'action' => 'view', 
                         $item->id

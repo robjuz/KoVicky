@@ -21,9 +21,9 @@
             <?= $this->Form->input('description',['class' => 'wysiwyg']); ?>
             <div id="problem-dropzone" class="" data-action="/ko-vicky/admin/mediafiles/upload/<?= $problem->id ?>">
                 <?php 
-                if (!empty($solution->mediafiles)): ?>
+                if (!empty($problem->mediafiles)): ?>
                     <?php
-                    foreach ($solution->mediafiles as $mediafile): ?>
+                    foreach ($problem->mediafiles as $mediafile): ?>
                         
                             <div class="dz-preview dz-processing dz-success dz-complete dz-image-preview">  
                                 <div class="dz-image">
