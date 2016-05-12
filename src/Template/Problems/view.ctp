@@ -63,15 +63,15 @@
         <h3> <?= __('Related Problems:') ?> </h3>
         <div class="row">
             <?php 
-            if (!empty($problem->child_problems)):
-                foreach ($problem->child_problems as $child_problem) : ?>
+            if (!empty($problem->related_problems)):
+                foreach ($problem->related_problems as $related_problem) : ?>
                     <div class="col-sm-4 col-md-3">
                         <div class="thumbnail">
-                            <img src="<?= $child_problem->photo ?>" alt="IMAGE">
+                            <img src="<?= $related_problem->photo ?>" alt="IMAGE">
                             <div class="caption">
-                                <h3><?= $child_problem->title ?></h3>
+                                <h3><?= $related_problem->title ?></h3>
                                 <p> <?= $this->Text->truncate(
-                                        $child_problem->description,
+                                        $related_problem->description,
                                         128,
                                         [
                                             'ellipsis' => '...',
@@ -80,7 +80,7 @@
                                     ); ?>
                                 </p>
                                 <p class="">
-                                    <?= $this->Html->link(__('Read more'),['action' => 'view', $child_problem->id], ['class' => 'btn btn-primary']); ?>
+                                    <?= $this->Html->link(__('Read more'),['action' => 'view', $related_problem->id], ['class' => 'btn btn-primary']); ?>
                                 </p>
                             </div>
                         </div>

@@ -16,7 +16,10 @@
                             <?= $this->Form->input('user_id', ['options' => $users, 'empty' => false]); ?>
                         </div>
                         <div class="col-xs-12 col-sm-6">
-                            <?= $this->Form->input('parent_id', ['options' => $parentProblems, 'empty' => true]); ?>
+                            <?= $this->Form->input('related_problems._ids', ['options' => $problems, 'empty' => true, 'multiple' => true]); ?>
+                        </div>
+                         <div class="col-xs-12">
+                            <?= $this->Form->input('is_main_problem') ?>
                         </div>
                     </div>
                 </div>
@@ -30,7 +33,7 @@
                         
                             <div class="dz-preview dz-processing dz-success dz-complete dz-image-preview">  
                                 <div class="dz-image">
-                                    <img data-dz-thumbnail="" alt="<?= $mediafile->file_name ?>" src="<?= $mediafile->file_url ?>" style="width: 100%">
+                                    <img data-dz-thumbnail="" alt="<?= $mediafile->file_name ?>" src="<?= $mediafile->file_url ?>" style="width: 100%, height: 100%">
                                 </div>  
                                 <div class="dz-details">     
                                     <div class="dz-filename">

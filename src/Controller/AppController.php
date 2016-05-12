@@ -54,10 +54,6 @@ class AppController extends BaseController
             $this->set('_serialize', true);
         }
 
-        if (isset($event->subject()->request->params['prefix']) and ($event->subject()->request->params['prefix'] === 'admin')) {
-            $this->viewBuilder()->layout('admin-default');
-        }
-
         $this->set('activeUser',$this->Auth->user());
     }
 

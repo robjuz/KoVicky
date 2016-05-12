@@ -32,16 +32,21 @@ class ProblemsTable extends Table
         $this->primaryKey('id');
 
         $this->addBehavior('Timestamp');
-        $this->addBehavior('Tree');
 
-        $this->belongsTo('ParentProblems', [
-            'className' => 'KoVicky.Problems',
-            'foreignKey' => 'parent_id'
+        $this->belongsToMany('RelatedProblems', [
+            'foreignKey' => 'problem_id',
+            'targetForeignKey' => 'related_problem_id',
+            'joinTable' => 'KoVicky_problems_problems',
+            'className' => 'KoVicky.Problems'
         ]);
-        $this->hasMany('ChildProblems', [
-            'className' => 'KoVicky.Problems',
-            'foreignKey' => 'parent_id'
+        $this->belongsToMany('Problems', [
+            'foreignKey' => 'problem_id',
+            'targetForeignKey' => 'problem_id',
+            'joinTable' => 'KoVicky_problems_problems',
+            'className' => 'KoVicky.Problems'
         ]);
+
+
         $this->hasMany('KoVicky.Mediafiles', [
             'foreignKey' => 'problem_id'
         ]);
@@ -80,7 +85,7 @@ class ProblemsTable extends Table
      */
     public function buildRules(RulesChecker $rules)
     {
-        $rules->add($rules->existsIn(['parent_id'], 'ParentProblems'));
+        //$rules->add($rules->existsIn(['parent_id'], 'ParentProblems'));
         return $rules;
     }
 

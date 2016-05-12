@@ -24,11 +24,11 @@ class ProblemsController extends AppController
      */
     public function index()
     {
-        //show only the 6 main problems
+        //show only the main problems
         $problems = $this->Problems->find('all')
                 ->where([
-                    'parent_id is NULL',
-                    'is_active', true
+                    'is_active' => true,
+                    'is_main_problem' => true
                 ]);
 
         $this->set(compact('problems'));
@@ -45,7 +45,7 @@ class ProblemsController extends AppController
     public function view($id = null)
     {
         $problem = $this->Problems->get($id, [
-            'contain' => ['ChildProblems', 'Mediafiles', 'Users']
+            'contain' => ['RelatedProblems', 'Mediafiles', 'Users']
         ]);
 
         $this->set('problem', $problem);
@@ -89,8 +89,8 @@ class ProblemsController extends AppController
                 $this->Flash->error(__('The problem could not be saved. Please, try again.'));
             }
         }
-        $parentProblems = $this->Problems->find('treeList');
-        $this->set(compact('problem', 'categories', 'parentProblems'));
+        $problems = $this->Problems->find('list');
+        $this->set(compact('problem', 'categories', 'problems'));
         $this->set('_serialize', ['problem']);
     }
 

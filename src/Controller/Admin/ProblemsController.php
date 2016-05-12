@@ -19,7 +19,7 @@ class ProblemsController extends AppController
     public function index()
     {
         $this->paginate = [
-            'contain' => ['Users', 'ParentProblems', 'ChildProblems' => ['ParentProblems']]
+            'contain' => ['Users', 'RelatedProblems']
         ];
         $problems = $this->paginate($this->Problems);
 
@@ -38,7 +38,7 @@ class ProblemsController extends AppController
     {
         if ($id != null) {
             $problem = $this->Problems->get($id, [
-                'contain' => ['Mediafiles', 'Users']
+                'contain' => ['Mediafiles', 'Users','RelatedProblems']
             ]);
         } else {
             $problem = $this->Problems->newEntity();
@@ -50,8 +50,10 @@ class ProblemsController extends AppController
             if ($this->request->data['photo'] == '') {
                 unset($this->request->data['photo']);
             }
-
+            debug($this->request->data);
+            //die();
             $problem = $this->Problems->patchEntity($problem, $this->request->data);
+
             $problem->is_active = true;
             if ($this->Problems->save($problem)) {
                 $this->Flash->success(__('The problem has been saved.'));
@@ -60,11 +62,11 @@ class ProblemsController extends AppController
                 $this->Flash->error(__('The problem could not be saved. Please, try again.'));
             }
         }
-        $parentProblems = $this->Problems->find('treeList');
+        $problems = $this->Problems->find('list')->where('is_active', true);
         $users = $this->Problems->Users->find('list',[
             'valueField' => 'username'
             ]);
-        $this->set(compact('problem', 'users', 'parentProblems'));
+        $this->set(compact('problem', 'users', 'problems'));
         $this->set('_serialize', ['problem']);
     }
 

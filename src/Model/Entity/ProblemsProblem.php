@@ -4,21 +4,14 @@ namespace KoVicky\Model\Entity;
 use Cake\ORM\Entity;
 
 /**
- * Problem Entity.
+ * ProblemsProblem Entity.
  *
- * @property int $id
- * @property int $user_id
- * @property \KoVicky\Model\Entity\User $user
- * @property string $photo
- * @property string $title
- * @property string $description
- * @property bool $is_active
- * @property \Cake\I18n\Time $created
- * @property \Cake\I18n\Time $modified
- * @property \KoVicky\Model\Entity\KoVickyMediafile[] $ko_vicky_mediafiles
- * @property \KoVicky\Model\Entity\Problem[] $problems
+ * @property int $problem_id
+ * @property \KoVicky\Model\Entity\Problem $problem
+ * @property int $related_problem_id
+ * @property \KoVicky\Model\Entity\RelatedProblem $related_problem
  */
-class Problem extends Entity
+class ProblemsProblem extends Entity
 {
 
     /**
@@ -32,6 +25,7 @@ class Problem extends Entity
      */
     protected $_accessible = [
         '*' => true,
-        'id' => false,
+        'problem_id' => false,
+        'related_problem_id' => false,
     ];
 }
