@@ -3,12 +3,14 @@
     'KoVicky.bootstrap.min',
     'KoVicky.bootstrap-material-design.min',
     'KoVicky.ripples.min',
+    'KoVicky.select2.min',
     'KoVicky.dropzone',
     'KoVicky.global'
 ]) ?>
 
 <?= $this->Html->script([
     'KoVicky.jquery-2.2.2.min', 
+    'KoVicky.select2.min', 
     'KoVicky.tinymce/tinymce.min.js',
     'KoVicky.bootstrap.min',
     'KoVicky.material.min',

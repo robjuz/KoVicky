@@ -13,7 +13,7 @@
                             <?= $this->Form->input('title'); ?>
                         </div>
                         <div class="col-xs-12">
-                            <?= $this->Form->input('related_problems._ids', ['options' => $problems, 'empty' => true, 'multiple' => true]); ?>
+                            <?= $this->Form->input('related_problems._ids', ['options' => $problems, 'empty' => false, 'multiple' => true, 'class' =>'select2']); ?>
                         </div>
                     </div>
                 </div>
@@ -27,7 +27,7 @@
                         
                             <div class="dz-preview dz-processing dz-success dz-complete dz-image-preview">  
                                 <div class="dz-image">
-                                    <img data-dz-thumbnail="" alt="<?= $mediafile->file_name ?>" src="<?= $mediafile->file_url ?>" style="width: 100%, height: 100%">
+                                    <img data-dz-thumbnail="" alt="<?= $mediafile->file_name ?>" src="<?= $mediafile->file_url ?>" style="width: 100%; height: 100%">
                                 </div>  
                                 <div class="dz-details">     
                                     <div class="dz-filename">

@@ -31,5 +31,7 @@ $(document).ready(function(){
 			              	height: 300,
 			            }
   });
+
+  $('.select2').select2();
                   
 });
