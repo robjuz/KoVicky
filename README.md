@@ -8,7 +8,7 @@ PROBLEM
 ````
 ## Install
 
-    composer require robjuz/cakephp-kovicky:dev-master
+    composer require robjuz/cakephp-kovicky
 
 add to your __config/bootstrap.php__
 
