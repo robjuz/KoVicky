@@ -39,8 +39,8 @@ class ProblemsTable extends Table
             'joinTable' => 'KoVicky_problems_problems',
             'className' => 'KoVicky.Problems'
         ]);
-        $this->belongsToMany('Problems', [
-            'foreignKey' => 'problem_id',
+        $this->belongsToMany('ParentProblems', [
+            'foreignKey' => 'related_problem_id',
             'targetForeignKey' => 'problem_id',
             'joinTable' => 'KoVicky_problems_problems',
             'className' => 'KoVicky.Problems'

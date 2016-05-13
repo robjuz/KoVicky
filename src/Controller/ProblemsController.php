@@ -45,7 +45,7 @@ class ProblemsController extends AppController
     public function view($id = null)
     {
         $problem = $this->Problems->get($id, [
-            'contain' => ['RelatedProblems', 'Mediafiles', 'Users']
+            'contain' => ['ParentProblems','RelatedProblems', 'Mediafiles', 'Users']
         ]);
 
         $this->set('problem', $problem);

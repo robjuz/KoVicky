@@ -50,8 +50,7 @@ class ProblemsController extends AppController
             if ($this->request->data['photo'] == '') {
                 unset($this->request->data['photo']);
             }
-            debug($this->request->data);
-            //die();
+
             $problem = $this->Problems->patchEntity($problem, $this->request->data);
 
             $problem->is_active = true;

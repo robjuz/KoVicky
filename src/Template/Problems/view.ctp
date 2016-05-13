@@ -63,7 +63,7 @@
         <h3> <?= __('Related Problems:') ?> </h3>
         <div class="row">
             <?php 
-            if (!empty($problem->related_problems)):
+            if (!empty($problem->related_problems) ):
                 foreach ($problem->related_problems as $related_problem) : ?>
                     <div class="col-sm-4 col-md-3">
                         <div class="thumbnail">
@@ -81,6 +81,31 @@
                                 </p>
                                 <p class="">
                                     <?= $this->Html->link(__('Read more'),['action' => 'view', $related_problem->id], ['class' => 'btn btn-primary']); ?>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <?php 
+                endforeach; 
+            endif; 
+            if (!empty($problem->parent_problems) ):
+                foreach ($problem->parent_problems as $parent_problem) : ?>
+                    <div class="col-sm-4 col-md-3">
+                        <div class="thumbnail">
+                            <img src="<?= $parent_problem->photo ?>" alt="IMAGE">
+                            <div class="caption">
+                                <h3><?= $parent_problem->title ?></h3>
+                                <p> <?= $this->Text->truncate(
+                                        $parent_problem->description,
+                                        128,
+                                        [
+                                            'ellipsis' => '...',
+                                            'exact' => false
+                                        ]
+                                    ); ?>
+                                </p>
+                                <p class="">
+                                    <?= $this->Html->link(__('Read more'),['action' => 'view', $parent_problem->id], ['class' => 'btn btn-primary']); ?>
                                 </p>
                             </div>
                         </div>
