@@ -6,6 +6,11 @@ PROBLEM
   └──> RELATED PROBLEMS
         └──> DESCRIPTION
 ````
+
+## Server Requirements
+* PHP 5+
+* GD extension
+
 ## Install
 
     composer require robjuz/cakephp-kovicky
