@@ -4,7 +4,12 @@
         <legend><?= __('Add/Edit Problem') ?></legend>
             <div class="row">
                 <div class="problem-image col-xs-12 col-sm-6 col-sm-push-6 text-center">
-                    <div id="image-upload" data-image-url="<?= $problem->photo ?>">
+                    <div id="problem-image-dropzone" data-action="/ko-vicky/admin/mediafiles/upload/<?= $problem->id ?>">
+                        <div class="dz-default dz-message">
+                            <span>
+                                <?= __('Drop files here to upload') ?>
+                            </span>
+                        </div>
                     </div>
                 </div>
                 <div class="col-xs-12 col-sm-6 col-sm-pull-6">

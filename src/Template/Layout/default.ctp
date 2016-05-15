@@ -17,7 +17,6 @@
     'KoVicky.dropzone', 
     'KoVicky.jquery-ui.min', 
     'KoVicky.ripples.min', 
-    'KoVicky.picturecut/src/jquery.picture.cut',
     'KoVicky.global', 
 ]); ?>
 
