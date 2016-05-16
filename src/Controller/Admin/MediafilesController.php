@@ -20,8 +20,16 @@ class MediafilesController extends AppController
         $file->file_url = "/uploads/".time().'-'.$data['name'];
         $file->problem_id = $id;
         $file->media_type = $type;
+
+        $imagine = new \Imagine\Gd\Imagine();
+        $size    = new \Imagine\Image\Box(800, 600);
+        $mode    = \Imagine\Image\ImageInterface::THUMBNAIL_INSET; // or \ImageInterface::THUMBNAIL_OUTBOUND;
+
+        $imagine->open($data['tmp_name'])
+            ->thumbnail($size, $mode)
+            ->save(WWW_ROOT.$file->file_url);
         
-        if(move_uploaded_file($data['tmp_name'],WWW_ROOT.$file->file_url)){
+        if(file_exists(WWW_ROOT.$file->file_url)){
             $this->Mediafiles->save($file);
         }
     }

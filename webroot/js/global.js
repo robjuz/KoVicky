@@ -21,8 +21,7 @@ $(document).ready(function(){
   $('#croppingModal').on('show.bs.modal', function (event) {
 	  var button = $(event.relatedTarget);
 	  var source = button.data('src');
-	  var modal = $(this)
-	  modal.find('.modal-title').text('Crop ' + source)
+	  var modal = $(this);
 	  modal.find('.modal-body #cropping_img').attr('src',source);
   });
                   

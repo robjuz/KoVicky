@@ -29,7 +29,7 @@
                         <?php foreach ($problem->mediafiles as $mediafile): ?>
                             <?php if($mediafile->media_type == 'header') : ?>
                             <!-- Button trigger modal -->
-                                <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#croppingModal" data-src="<?= $mediafile->file_name ?>">
+                                <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#croppingModal" data-src="<?= $mediafile->file_url ?>">
                                 <div class="dz-preview dz-processing dz-success dz-complete dz-image-preview">  
                                     <div class="dz-image">
                                         <img data-dz-thumbnail="" alt="<?= $mediafile->file_name ?>" src="<?= $mediafile->file_url ?>" style="width: 100%; height: 100%">
