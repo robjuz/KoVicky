@@ -23,6 +23,20 @@ $(document).ready(function(){
 	  var source = button.data('src');
 	  var modal = $(this);
 	  modal.find('.modal-body #cropping_img').attr('src',source);
+	  modal.find('.modal-body #cropping_img').Jcrop({
+		aspectRatio: 1.6,
+		keySupport: false,
+		onSelect: showCoords,
+        onChange: showCoords
+	});
   });
                   
 });
+
+function showCoords(c) {
+ console.dir(c);
+}
+
+function sendCropping() {
+	
+}
