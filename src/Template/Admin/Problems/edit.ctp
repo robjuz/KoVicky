@@ -8,7 +8,7 @@
         <h4 class="modal-title" id="myModalLabel">Crop Header Image</h4>
       </div>
       <div class="modal-body">
-        ...
+        <img src="../default.jpg" id="cropping_img" alt="default" class="jcrop"/>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
@@ -29,7 +29,7 @@
                         <?php foreach ($problem->mediafiles as $mediafile): ?>
                             <?php if($mediafile->media_type == 'header') : ?>
                             <!-- Button trigger modal -->
-                                <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#croppingModal">
+                                <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#croppingModal" data-src="<?= $mediafile->file_name ?>">
                                 <div class="dz-preview dz-processing dz-success dz-complete dz-image-preview">  
                                     <div class="dz-image">
                                         <img data-dz-thumbnail="" alt="<?= $mediafile->file_name ?>" src="<?= $mediafile->file_url ?>" style="width: 100%; height: 100%">

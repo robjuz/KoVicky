@@ -17,5 +17,13 @@ $(document).ready(function(){
 	});
 
   $('.select2').select2();
+
+  $('#croppingModal').on('show.bs.modal', function (event) {
+	  var button = $(event.relatedTarget);
+	  var source = button.data('src');
+	  var modal = $(this)
+	  modal.find('.modal-title').text('Crop ' + source)
+	  modal.find('.modal-body #cropping_img').attr('src',source);
+  });
                   
 });
