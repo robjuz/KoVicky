@@ -1,3 +1,23 @@
+
+<!-- Modal -->
+<div class="modal fade" id="croppingModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">Crop Header Image</h4>
+      </div>
+      <div class="modal-body">
+        ...
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Crop</button>
+      </div>
+    </div>
+  </div>
+</div>
+
 <div class="col-xs-12">
     <?= $this->Form->create($problem,['type' => 'file']) ?>
     <fieldset>
@@ -8,6 +28,8 @@
                     <?php if (!empty($problem->mediafiles)): ?>
                         <?php foreach ($problem->mediafiles as $mediafile): ?>
                             <?php if($mediafile->media_type == 'header') : ?>
+                            <!-- Button trigger modal -->
+                                <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#croppingModal">
                                 <div class="dz-preview dz-processing dz-success dz-complete dz-image-preview">  
                                     <div class="dz-image">
                                         <img data-dz-thumbnail="" alt="<?= $mediafile->file_name ?>" src="<?= $mediafile->file_url ?>" style="width: 100%; height: 100%">
@@ -20,6 +42,7 @@
                                         </div>  
                                     </div>  
                                 </div>
+                                </button>
                             <?php endif; ?>
                         <?php endforeach; ?>
                     <?php endif; ?>
