@@ -4,7 +4,7 @@
         <legend><?= __('Add/Edit Problem') ?></legend>
             <div class="row">
                 <div class="problem-image col-xs-12 col-sm-6 col-sm-push-6 text-center">
-                    <div id="problem-image-dropzone" data-action="/ko-vicky/admin/mediafiles/upload/<?= $problem->id ?>">
+                    <div id="problem-image-dropzone" data-action="/ko-vicky/admin/mediafiles/upload/header/<?= $problem->id ?>">
                         <div class="dz-default dz-message">
                             <span>
                                 <?= __('Drop files here to upload') ?>
@@ -30,7 +30,7 @@
                 </div>
             </div>
             <?= $this->Form->input('description',['class' => 'wysiwyg']); ?>
-            <div id="problem-dropzone" class="" data-action="/ko-vicky/admin/mediafiles/upload/<?= $problem->id ?>">
+            <div id="problem-dropzone" class="" data-action="/ko-vicky/admin/mediafiles/upload/attachment/<?= $problem->id ?>">
                 <?php 
                 if (!empty($problem->mediafiles)): ?>
                     <?php

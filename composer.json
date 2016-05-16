@@ -7,7 +7,8 @@
         "php": ">=5.4.16",
         "cakephp/cakephp": "~3.0",
     	"cakephp/migrations": "@stable",
-        "Holt59/cakephp3-bootstrap-helpers": "dev-master"
+        "Holt59/cakephp3-bootstrap-helpers": "dev-master",
+        "imagine/imagine": "~0.5.0"
     },
     "require-dev": {
         "phpunit/phpunit": "*"

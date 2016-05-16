@@ -11,14 +11,15 @@ use KoVicky\Controller\AppController;
 class MediafilesController extends AppController
 {
 
-    public function upload($id = null) {
-
+    public function upload($type = null,$id = null) {
+        
         $file = $this->Mediafiles->newEntity();
         $data = $this->request->data['file'];
 
         $file->file_name = $data['name'];
         $file->file_url = "/uploads/".time().'-'.$data['name'];
         $file->problem_id = $id;
+        $file->media_type = $type;
         
         if(move_uploaded_file($data['tmp_name'],WWW_ROOT.$file->file_url)){
             $this->Mediafiles->save($file);
