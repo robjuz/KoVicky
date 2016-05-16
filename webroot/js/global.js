@@ -26,17 +26,26 @@ $(document).ready(function(){
 	  modal.find('.modal-body #cropping_img').Jcrop({
 		aspectRatio: 1.6,
 		keySupport: false,
-		onSelect: showCoords,
-        onChange: showCoords
+		onSelect: setCoords,
+        onChange: setCoords
 	});
   });
+
+  $('#crop_btn').click( sendCropping );
                   
 });
 
-function showCoords(c) {
- console.dir(c);
+function setCoords(c) {
+	$(' #cropping_img').data(c);
 }
 
-function sendCropping() {
-	
+var sendCropping = function() {
+	var data = $('#cropping_img').data();
+	data.Jcrop.destroy();
+	data.image = $(' #cropping_img').attr('src');
+
+	$.post( "/ko-vicky/admin/mediafiles/thumb", data).done( function( data ) {
+	  $( ".result" ).html( data );
+	  $('#croppingModal').modal('hide');
+	});
 }

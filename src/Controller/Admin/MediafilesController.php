@@ -34,6 +34,18 @@ class MediafilesController extends AppController
         }
     }
 
+    public function thumb()  {
+        $data = $this->request->data;
+        $imagine = new \Imagine\Gd\Imagine();
+        $point   = new \Imagine\Image\Point($data['x'],$data['y']);
+        $box    = new \Imagine\Image\Box($data['w'],$data['h']);
+        $mode    = \Imagine\Image\ImageInterface::THUMBNAIL_OUTBOUND;
+
+        $imagine->open(WWW_ROOT.$data['image'])
+            ->crop($point, $box)
+            ->save(WWW_ROOT.'/uploads/test.jpg');
+    }
+
     /**
      * Index method
      *
