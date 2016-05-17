@@ -15,6 +15,7 @@ $(document).ready(function(){
 				});
 				this.on("success", function(file,response){
 					$(file.previewElement).children().first().attr('data-src',response.file.file_url);
+					$(file.previewElement).children().first().click();
 				});
 			  }
 	}).addClass('dropzone');
