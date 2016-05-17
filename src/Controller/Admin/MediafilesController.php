@@ -2,6 +2,10 @@
 namespace KoVicky\Controller\Admin;
 
 use KoVicky\Controller\AppController;
+use Imagine\Gd\Imagine;
+use Imagine\Image\Box;
+use Imagine\Image\ImageInterface;
+use Imagine\Image\Point;
 
 /**
  * Mediafiles Controller
@@ -21,9 +25,9 @@ class MediafilesController extends AppController
         $file->problem_id = $id;
         $file->media_type = $type;
 
-        $imagine = new \Imagine\Gd\Imagine();
-        $size    = new \Imagine\Image\Box(800, 600);
-        $mode    = \Imagine\Image\ImageInterface::THUMBNAIL_INSET; // or \ImageInterface::THUMBNAIL_OUTBOUND;
+        $imagine = new Imagine();
+        $size    = new Box(800, 500);
+        $mode    = ImageInterface::THUMBNAIL_INSET; // or \ImageInterface::THUMBNAIL_OUTBOUND;
 
         $imagine->open($data['tmp_name'])
             ->thumbnail($size, $mode)
@@ -60,10 +64,10 @@ class MediafilesController extends AppController
         $h = isset($data['h']) ? $data['h'] : 0;
 
         if ($w > 0 AND $h > 0){
-            $imagine = new \Imagine\Gd\Imagine();
-            $point   = new \Imagine\Image\Point($x,$y);
-            $box    = new \Imagine\Image\Box($w, $h);
-            $mode    = \Imagine\Image\ImageInterface::THUMBNAIL_OUTBOUND;
+            $imagine    = new Imagine();
+            $point      = new Point($x,$y);
+            $box        = new Box($w, $h);
+            $mode       = ImageInterface::THUMBNAIL_OUTBOUND;
 
             $file = (WWW_ROOT.$data['image']);
             $imagine->open($file)

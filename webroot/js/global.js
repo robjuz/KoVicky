@@ -36,6 +36,9 @@ $(document).ready(function(){
 	  var modal = $(this);
 	  modal.find('.modal-body #cropping_img').attr('src',source);
 	  modal.find('.modal-body #cropping_img').attr('data-image',source);
+	  if( modal.find('.modal-body #cropping_img').data().Jcrop != undefined ) {
+	  	modal.find('.modal-body #cropping_img').data().Jcrop.destroy();
+	  }
 	  modal.find('.modal-body #cropping_img').Jcrop({
 		 aspectRatio: 1.6,
 		 keySupport: false,
