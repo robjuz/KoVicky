@@ -52,18 +52,24 @@ class MediafilesController extends AppController
 
     public function thumb()  {
         $this->autoRender = false ;
-
-
         $data = $this->request->data;
-        $imagine = new \Imagine\Gd\Imagine();
-        $point   = new \Imagine\Image\Point($data['x'],$data['y']);
-        $box    = new \Imagine\Image\Box($data['w'],$data['h']);
-        $mode    = \Imagine\Image\ImageInterface::THUMBNAIL_OUTBOUND;
 
-        $file = (WWW_ROOT.$data['image']);
-        $imagine->open($file)
-            ->crop($point, $box)
-            ->save($file);
+        $x = isset($data['x']) ? $data['x'] : 0;
+        $y = isset($data['y']) ? $data['y'] : 0;
+        $w = isset($data['w']) ? $data['w'] : 0;
+        $h = isset($data['h']) ? $data['h'] : 0;
+
+        if ($w > 0 AND $h > 0){
+            $imagine = new \Imagine\Gd\Imagine();
+            $point   = new \Imagine\Image\Point($x,$y);
+            $box    = new \Imagine\Image\Box($w, $h);
+            $mode    = \Imagine\Image\ImageInterface::THUMBNAIL_OUTBOUND;
+
+            $file = (WWW_ROOT.$data['image']);
+            $imagine->open($file)
+                ->crop($point, $box)
+                ->save($file);
+        }
     }
 
     /**
