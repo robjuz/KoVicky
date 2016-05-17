@@ -5,6 +5,7 @@
     'KoVicky.ripples.min',
     'KoVicky.select2.min',
     'KoVicky.dropzone',
+    'KoVicky.Jcrop.min',
     'KoVicky.global'
 ]) ?>
 
@@ -16,8 +17,8 @@
     'KoVicky.material.min',
     'KoVicky.dropzone', 
     'KoVicky.jquery-ui.min', 
-    'KoVicky.ripples.min', 
-    'KoVicky.picturecut/src/jquery.picture.cut',
+    'KoVicky.ripples.min',
+    'KoVicky.Jcrop', 
     'KoVicky.global', 
 ]); ?>
 
