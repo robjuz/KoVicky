@@ -34,6 +34,7 @@ $(document).ready(function(){
 	  var source = button.data('src');
 	  var modal = $(this);
 	  modal.find('.modal-body #cropping_img').attr('src',source);
+	  modal.find('.modal-body #cropping_img').attr('data-image',source);
 	  modal.find('.modal-body #cropping_img').Jcrop({
 		 aspectRatio: 1.6,
 		 keySupport: false,
@@ -43,21 +44,18 @@ $(document).ready(function(){
 	});
   });
 
-  $('#crop_btn').click( sendCropping );
+	$('#crop_btn').click( function() {
+		var data = $('#cropping_img').data();
+		data.Jcrop.destroy();
+
+		$.post( "/ko-vicky/admin/mediafiles/thumb", data).done( function( data ) {
+		  $( ".result" ).html( data );
+		  $('#croppingModal').modal('hide');
+		});
+	});
                   
 });
 
 function setCoords(c) {
 	$(' #cropping_img').data(c);
-}
-
-var sendCropping = function() {
-	var data = $('#cropping_img').data();
-	data.Jcrop.destroy();
-	data.image = $(' #cropping_img').attr('src');
-
-	$.post( "/ko-vicky/admin/mediafiles/thumb", data).done( function( data ) {
-	  $( ".result" ).html( data );
-	  $('#croppingModal').modal('hide');
-	});
 }

@@ -18,7 +18,7 @@
     'KoVicky.dropzone', 
     'KoVicky.jquery-ui.min', 
     'KoVicky.ripples.min',
-    'KoVicky.Jcrop.min', 
+    'KoVicky.Jcrop', 
     'KoVicky.global', 
 ]); ?>
 
