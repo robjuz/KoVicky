@@ -12,7 +12,7 @@ class MediafilesController extends AppController
 {
 
     public function upload($type = null,$id = null) {
-        
+
         $file = $this->Mediafiles->newEntity();
         $data = $this->request->data['file'];
 
@@ -31,19 +31,39 @@ class MediafilesController extends AppController
         
         if(file_exists(WWW_ROOT.$file->file_url)){
             $this->Mediafiles->save($file);
+            $this->set('file', $file);
+            $this->set('_serialize',['file']);
+
+            $toDelete = $this->Mediafiles->find('all')
+                ->where([
+                    'media_type' => 'header',
+                    'problem_id' => $id,
+                    'id != ' => $file->id
+                ]);
+            foreach ($toDelete as $dFile) {
+                if (is_file(WWW_ROOT.$dFile->file_url)){
+                    unlink(WWW_ROOT.$dFile->file_url);    
+                }
+                $this->Mediafiles->delete($dFile);
+            }
         }
+
     }
 
     public function thumb()  {
+        $this->autoRender = false ;
+
+
         $data = $this->request->data;
         $imagine = new \Imagine\Gd\Imagine();
         $point   = new \Imagine\Image\Point($data['x'],$data['y']);
         $box    = new \Imagine\Image\Box($data['w'],$data['h']);
         $mode    = \Imagine\Image\ImageInterface::THUMBNAIL_OUTBOUND;
 
-        $imagine->open(WWW_ROOT.$data['image'])
+        $file = (WWW_ROOT.$data['image']);
+        $imagine->open($file)
             ->crop($point, $box)
-            ->save(WWW_ROOT.'/uploads/test.jpg');
+            ->save($file);
     }
 
     /**
@@ -60,23 +80,6 @@ class MediafilesController extends AppController
 
         $this->set(compact('mediafiles'));
         $this->set('_serialize', ['mediafiles']);
-    }
-
-    /**
-     * View method
-     *
-     * @param string|null $id Mediafile id.
-     * @return \Cake\Network\Response|null
-     * @throws \Cake\Datasource\Exception\RecordNotFoundException When record not found.
-     */
-    public function view($id = null)
-    {
-        $mediafile = $this->Mediafiles->get($id, [
-            'contain' => ['Problems']
-        ]);
-
-        $this->set('mediafile', $mediafile);
-        $this->set('_serialize', ['mediafile']);
     }
 
     /**

@@ -8,7 +8,7 @@
         <h4 class="modal-title" id="myModalLabel">Crop Header Image</h4>
       </div>
       <div class="modal-body">
-        <img src="../default.jpg" id="cropping_img" alt="default" class="jcrop"/>
+          <?= $this->Html->Image('KoVicky.default.jpg',['id' => 'cropping_img', 'alt' => 'default']) ?>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
@@ -29,20 +29,20 @@
                         <?php foreach ($problem->mediafiles as $mediafile): ?>
                             <?php if($mediafile->media_type == 'header') : ?>
                             <!-- Button trigger modal -->
-                                <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#croppingModal" data-src="<?= $mediafile->file_url ?>">
                                 <div class="dz-preview dz-processing dz-success dz-complete dz-image-preview">  
-                                    <div class="dz-image">
-                                        <img data-dz-thumbnail="" alt="<?= $mediafile->file_name ?>" src="<?= $mediafile->file_url ?>" style="width: 100%; height: 100%">
-                                    </div>  
-                                    <div class="dz-details">     
-                                        <div class="dz-filename">
-                                            <span data-dz-name="">
-                                                <?= $this->Html->link($mediafile->file_name, $mediafile->file_url,['target' => 'blank']) ?>
-                                            </span>
+                                    <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#croppingModal" data-src="<?= $mediafile->file_url ?>">
+                                        <div class="dz-image">
+                                            <img data-dz-thumbnail="" alt="<?= $mediafile->file_name ?>" src="<?= $mediafile->file_url ?>" style="width: 100%; height: 100%">
                                         </div>  
-                                    </div>  
+                                        <div class="dz-details">     
+                                            <div class="dz-filename">
+                                                <span data-dz-name="">
+                                                    <?= $mediafile->file_name ?>
+                                                </span>
+                                            </div>  
+                                        </div>  
+                                    </button>
                                 </div>
-                                </button>
                             <?php endif; ?>
                         <?php endforeach; ?>
                     <?php endif; ?>
