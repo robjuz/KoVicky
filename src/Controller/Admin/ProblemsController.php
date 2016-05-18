@@ -109,6 +109,7 @@ class ProblemsController extends AppController
 
         $problem = $this->Problems->get($id);
         $problem->image = 'problem_'.time().'_'.$data['name'];
+        $problem->thumb = 'problem_'.time().'_'.$data['name'];
         $this->Problems->save($problem);
 
         $imagine->open($data['tmp_name'])
