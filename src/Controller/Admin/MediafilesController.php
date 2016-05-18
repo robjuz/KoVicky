@@ -14,6 +14,7 @@ class MediafilesController extends AppController
 
     public function upload($type = 'default',$id = null) 
     {
+        $this->response->type('application/json');
 
         $data = $this->request->data['file'];
 
@@ -38,52 +39,6 @@ class MediafilesController extends AppController
     }
 
     /**
-     * Index method
-     *
-     * @return \Cake\Network\Response|null
-     */
-    public function index()
-    {
-        $this->paginate = [
-            'contain' => ['Problems']
-        ];
-        $mediafiles = $this->paginate($this->Mediafiles);
-
-        $this->set(compact('mediafiles'));
-        $this->set('_serialize', ['mediafiles']);
-    }
-
-    /**
-     * Edit method
-     *
-     * @param string|null $id Mediafile id.
-     * @return \Cake\Network\Response|void Redirects on successful edit, renders view otherwise.
-     * @throws \Cake\Network\Exception\NotFoundException When record not found.
-     */
-    public function edit($id = null)
-    {
-        if ($id != null) {
-            $mediafile = $this->Mediafiles->get($id, [
-                'contain' => []
-            ]);
-        } else {
-            $mediafile = $this->Mediafiles->newEntity();
-        }
-        if ($this->request->is(['patch', 'post', 'put'])) {
-            $mediafile = $this->Mediafiles->patchEntity($mediafile, $this->request->data);
-            if ($this->Mediafiles->save($mediafile)) {
-                $this->Flash->success(__('The mediafile has been saved.'));
-                return $this->redirect(['action' => 'index']);
-            } else {
-                $this->Flash->error(__('The mediafile could not be saved. Please, try again.'));
-            }
-        }
-        $problems = $this->Mediafiles->Problems->find('list');
-        $this->set(compact('mediafile', 'problems'));
-        $this->set('_serialize', ['mediafile']);
-    }
-
-    /**
      * Delete method
      *
      * @param string|null $id Mediafile id.
@@ -99,6 +54,6 @@ class MediafilesController extends AppController
         } else {
             $this->Flash->error(__('The mediafile could not be deleted. Please, try again.'));
         }
-        return $this->redirect(['action' => 'index']);
+        return $this->redirect($this->referer());
     }
 }

@@ -57,11 +57,6 @@ class ProblemsController extends AppController
             return $this->redirect(['action' => 'edit', $problem->id]);
         }
         if ($this->request->is(['patch', 'post', 'put'])) {
-            // //prevent removing photo on update then no new photo given
-            // if ($this->request->data['photo'] == '') {
-            //     unset($this->request->data['photo']);
-            // }
-
             $problem = $this->Problems->patchEntity($problem, $this->request->data);
 
             $problem->is_active = true;
@@ -101,6 +96,8 @@ class ProblemsController extends AppController
 
      public function upload($id = null) 
     {
+        $this->response->type('application/json');
+
         $imagine = new Imagine();
         $size    = new Box(800, 500);
         $mode    = ImageInterface::THUMBNAIL_INSET;
@@ -122,6 +119,7 @@ class ProblemsController extends AppController
 
     public function makeThumb($id = null)  
     {
+        $this->response->type('application/json');
         $data = $this->request->data;
 
         $x = isset($data['x']) ? $data['x'] : 0;

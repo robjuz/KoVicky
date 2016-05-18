@@ -23,3 +23,8 @@ input[name="file-photo"] {
     position: absolute;
     top: auto;
 }
+
+.btn-submit {
+	bottom: -70px;
+	position: absolute;
+}
