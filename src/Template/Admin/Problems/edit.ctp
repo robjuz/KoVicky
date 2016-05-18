@@ -1,6 +1,6 @@
 
 <!-- Modal -->
-<div class="modal fade" id="croppingModal" tabindex="-1" role="dialog" aria-labelledby="croppingLabel" data-action="/ko-vicky/admin/mediafiles/upload/thumb/<?= $problem->id ?>">
+<div class="modal fade" id="croppingModal" tabindex="-1" role="dialog" aria-labelledby="croppingLabel" data-action="/ko-vicky/admin/problems/make_thumb/<?= $problem->id ?>">
   <div class="modal-dialog modal-lg" role="document">
     <div class="modal-content">
       <div class="modal-header">
@@ -24,27 +24,23 @@
         <legend><?= __('Add/Edit Problem') ?></legend>
             <div class="row">
                 <div class="problem-image col-xs-12 col-sm-6 col-sm-push-6 text-center">
-                    <div id="problem-image-dropzone" data-action="/ko-vicky/admin/mediafiles/upload/header/<?= $problem->id ?>">
-                    <?php if (!empty($problem->mediafiles)): ?>
-                        <?php foreach ($problem->mediafiles as $mediafile): ?>
-                            <?php if($mediafile->media_type == 'header') : ?>
-                            <!-- Button trigger modal -->
-                                <div class="dz-preview dz-processing dz-success dz-complete dz-image-preview">  
-                                    <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#croppingModal" data-src="<?= $mediafile->file_url ?>" data-name="<?= $mediafile->file_name ?>">
-                                        <div class="dz-image">
-                                            <img data-dz-thumbnail="" alt="<?= $mediafile->file_name ?>" src="<?= $mediafile->file_url ?>" style="width: 100%; height: 100%">
-                                        </div>  
-                                        <div class="dz-details">     
-                                            <div class="dz-filename">
-                                                <span data-dz-name="">
-                                                    <?= $mediafile->file_name ?>
-                                                </span>
-                                            </div>  
-                                        </div>  
-                                    </button>
-                                </div>
-                            <?php endif; ?>
-                        <?php endforeach; ?>
+                    <div id="problem-image-dropzone" data-action="/ko-vicky/admin/problems/upload/<?= $problem->id ?>">
+                    <?php if (!empty($problem->image)): ?>
+                    <!-- Button trigger modal -->
+                        <div class="dz-preview dz-processing dz-success dz-complete dz-image-preview">  
+                            <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#croppingModal" data-src="<?= '/uploads/'.$problem->image ?>" data-name="<?= $problem->image ?>">
+                                <div class="dz-image">
+                                    <img data-dz-thumbnail="" alt="<?= $problem->image ?>" src="<?= '/uploads/'.$problem->thumb ?>" style="width: 100%; height: 100%">
+                                </div>  
+                                <div class="dz-details">     
+                                    <div class="dz-filename">
+                                        <span data-dz-name="">
+                                            <?= $problem->image ?>
+                                        </span>
+                                    </div>  
+                                </div>  
+                            </button>
+                        </div>
                     <?php endif; ?>
                         <div class="dz-default dz-message">
                             <span>
