@@ -2,6 +2,10 @@
 namespace KoVicky\Controller\Admin;
 
 use KoVicky\Controller\AppController;
+use Imagine\Gd\Imagine;
+use Imagine\Image\Box;
+use Imagine\Image\ImageInterface;
+use Imagine\Image\Point;
 
 /**
  * Problems Controller
@@ -10,6 +14,13 @@ use KoVicky\Controller\AppController;
  */
 class ProblemsController extends AppController
 {
+
+    public function initialize()
+    {
+        parent::initialize();
+        $this->loadComponent('RequestHandler');
+    }
+
 
     /**
      * Index method
@@ -86,5 +97,53 @@ class ProblemsController extends AppController
             $this->Flash->error(__('The problem could not be deleted. Please, try again.'));
         }
         return $this->redirect(['action' => 'index']);
+    }
+
+     public function upload($id = null) 
+    {
+        $imagine = new Imagine();
+        $size    = new Box(800, 500);
+        $mode    = ImageInterface::THUMBNAIL_INSET;
+        
+        $data = $this->request->data['file'];
+
+        $problem = $this->Problems->get($id);
+        $problem->image = 'problem_'.time().'_'.$data['name'];
+        $this->Problems->save($problem);
+
+        $imagine->open($data['tmp_name'])
+            ->thumbnail($size, $mode)
+            ->save(WWW_ROOT.'/uploads/'.$problem->image);
+
+        $this->set( compact('problem') );
+        $this->set('_serialize', ['problem']);
+    }
+
+    public function makeThumb($id = null)  
+    {
+        $data = $this->request->data;
+
+        $x = isset($data['x']) ? $data['x'] : 0;
+        $y = isset($data['y']) ? $data['y'] : 0;
+        $w = isset($data['w']) ? $data['w'] : 0;
+        $h = isset($data['h']) ? $data['h'] : 0;
+
+        $problem = $this->Problems->get($id);
+        $problem->thumb = 't_'.$problem->image;
+
+        if ($w > 0 AND $h > 0){
+            $imagine    = new Imagine();
+            $point      = new Point($x,$y);
+            $box        = new Box($w, $h);
+            $mode       = ImageInterface::THUMBNAIL_OUTBOUND;
+            $imagine->open(WWW_ROOT.'/uploads/'.$problem->image)
+                ->crop($point, $box)
+                ->save(WWW_ROOT.'/uploads/'.$problem->thumb);
+        }
+
+        $this->Problems->save($problem);
+
+        $this->set( compact('problem') );
+        $this->set('_serialize', ['problem']);
     }
 }

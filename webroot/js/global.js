@@ -50,13 +50,18 @@ $(document).ready(function(){
   });
 
 	$('#crop_btn').click( function() {
-		var data = $('#cropping_img').data();
-		data.Jcrop.destroy();
-
-		$.post( $("div#croppingModal").data('action'), data).done( function( data ) {
-		  $( ".result" ).html( data );
-		  $('#croppingModal').modal('hide');
-		});
+		$('#cropping_img').data('Jcrop').destroy();
+	    $.ajax({
+	    	url : $("div#croppingModal").data('action'),
+	    	method : 'POST',	     
+			headers: {          
+			     Accept : "application/json; charset=utf-8"
+	  		},     
+	 		data: $('#cropping_img').data(),    
+	  		success : function(response) {  
+	  			$('#croppingModal').modal('hide');	  
+	   		} 
+	   	});
 	});
                   
 });

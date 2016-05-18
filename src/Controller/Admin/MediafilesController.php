@@ -2,10 +2,6 @@
 namespace KoVicky\Controller\Admin;
 
 use KoVicky\Controller\AppController;
-use Imagine\Gd\Imagine;
-use Imagine\Image\Box;
-use Imagine\Image\ImageInterface;
-use Imagine\Image\Point;
 use Cake\Core\Exception\Exception;
 
 /**
@@ -16,99 +12,28 @@ use Cake\Core\Exception\Exception;
 class MediafilesController extends AppController
 {
 
-    public function upload($type = null,$id = null) 
+    public function upload($type = 'default',$id = null) 
     {
+
+        $data = $this->request->data['file'];
+
         $file = $this->Mediafiles->newEntity();
-        if (isset($this->request->data['file'])) {
-            //new file upload
-            $data = $this->request->data['file'];
-        } else {
-            //crop existing file
-            $data = $this->request->data;
-            $data['tmp_name'] = WWW_ROOT.$data['image'];
-        }
-
-        $file->file_name = $data['name'];
-        $file->file_url = "/uploads/".time().'_'.$type.'_'.$data['name'];
-        $file->problem_id = $id;
-        $file->media_type = $type;
-
-        if (is_uploaded_file($data['tmp_name'])){
-            move_uploaded_file($data['tmp_name'],WWW_ROOT.$file->file_url);
-        } else {
-            copy($data['tmp_name'], WWW_ROOT.$file->file_url);
-        }
         
-
-        switch ($type) {
-            case 'header':
-                self::upload_header($file);
-                break;
-            case 'thumb':
-                self::upload_thumb($file);
-                break;
-            case 'attachment':
-                break;
-            default:
-                unlink($file->file_url);
-                throw new Exception("Wrong media_type!");
-                break;
-        } 
+        $file->file_name    = $data['name'];
+        $file->media_type   = $type;
+        $file->file_url     = "/uploads/".time().'-'.$type.'-'.$data['name'];
+        $file->problem_id   = $id;
+        
+        if(is_uploaded_file($data['tmp_name'])) {
+            move_uploaded_file($data['tmp_name'],WWW_ROOT.$file->file_url);
+        }
 
         if(file_exists(WWW_ROOT.$file->file_url)){
             $this->Mediafiles->save($file);
             $this->set('file', $file);
             $this->set('_serialize',['file']);
         } else {
-            throw new Exception("File could not be saved");
-        }
-
-    }
-
-    private function upload_header($file = null) 
-    {
-        $imagine = new Imagine();
-        $size    = new Box(800, 500);
-        $mode    = ImageInterface::THUMBNAIL_INSET; // or \ImageInterface::THUMBNAIL_OUTBOUND;
-        $fileUlr = WWW_ROOT.$file->file_url;
-
-        $imagine->open($fileUlr)
-            ->thumbnail($size, $mode)
-            ->save($fileUlr);
-
-        $toDelete = $this->Mediafiles->find('all')
-                ->where([
-                    'media_type' => 'header',
-                    'problem_id' => $file->problem_id,
-                    'id != ' => $file->id
-                ]);
-        foreach ($toDelete as $dFile){
-            if (is_file(WWW_ROOT.$dFile->file_url)){
-                unlink(WWW_ROOT.$dFile->file_url);    
-            }
-            $this->Mediafiles->delete($dFile);
-        }
-    }
-
-    private function upload_thumb($file = null)  
-    {
-        $data = $this->request->data;
-
-        $x = isset($data['x']) ? $data['x'] : 0;
-        $y = isset($data['y']) ? $data['y'] : 0;
-        $w = isset($data['w']) ? $data['w'] : 0;
-        $h = isset($data['h']) ? $data['h'] : 0;
-
-        if ($w > 0 AND $h > 0){
-            $imagine    = new Imagine();
-            $point      = new Point($x,$y);
-            $box        = new Box($w, $h);
-            $mode       = ImageInterface::THUMBNAIL_OUTBOUND;
-
-            $fileUrl = WWW_ROOT.$file->file_url;
-            $imagine->open($fileUrl)
-                ->crop($point, $box)
-                ->save($fileUrl);
+            throw new Exception("File could not be saved. (File-System)");
         }
     }
 

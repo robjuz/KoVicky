@@ -9,7 +9,7 @@
     <?php foreach ($problems as $problem) : ?>
     <div class="col-sm-6 col-md-4">
         <div class="thumbnail">
-            <img class="img-responsive" src="<?= $problem->photo ?>" alt="IMAGE">
+            <img class="img-responsive" src="<?= $problem->thumb ?>" alt="IMAGE">
             <div class="caption">
                 <h3><?= $problem->title ?></h3>
                 <p> <?= $this->Text->truncate(

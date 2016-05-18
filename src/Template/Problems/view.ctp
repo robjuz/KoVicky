@@ -1,15 +1,8 @@
 <div class="col-xs-12">
     <div class="well">
         <div class="problem-image">
-            <?php if (!empty($problem->mediafiles)): ?>
-                <?php foreach ($problem->mediafiles as $mediafile): ?>
-                    <?php if($mediafile->media_type == 'thumb') : ?>
-                    <img class="img-responsive"  src="<?= $mediafile->file_url ?>"></div>
-                    <?php endif ?>
-               <?php endforeach; ?>
-            <?php endif; ?>
-
-        
+            <img class="img-responsive"  src="<?= '/uploads/'.$problem->image ?>" alt="<?= h($problem->title) ?>" />
+        </div>
         <h3>
             <?= h($problem->title) ?>
             <?php if($isAllowedToEdit) : ?>
