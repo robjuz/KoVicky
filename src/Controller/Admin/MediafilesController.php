@@ -19,13 +19,26 @@ class MediafilesController extends AppController
     public function upload($type = null,$id = null) 
     {
         $file = $this->Mediafiles->newEntity();
-        $data = $this->request->data['file'];
+        if (isset($this->request->data['file'])) {
+            //new file upload
+            $data = $this->request->data['file'];
+        } else {
+            //crop existing file
+            $data = $this->request->data;
+            $data['tmp_name'] = WWW_ROOT.$data['image'];
+        }
 
         $file->file_name = $data['name'];
-        $file->file_url = "/uploads/".time().'_'.$type.'_';
+        $file->file_url = "/uploads/".time().'_'.$type.'_'.$data['name'];
         $file->problem_id = $id;
         $file->media_type = $type;
-        move_uploaded_file($data['tmp_name'],WWW_ROOT.$file->file_url);
+
+        if (is_uploaded_file($data['tmp_name'])){
+            move_uploaded_file($data['tmp_name'],WWW_ROOT.$file->file_url);
+        } else {
+            copy($data['tmp_name'], WWW_ROOT.$file->file_url);
+        }
+        
 
         switch ($type) {
             case 'header':
@@ -79,8 +92,7 @@ class MediafilesController extends AppController
 
     private function upload_thumb($file = null)  
     {
-        $data = $this->request->data['file'];
-        debug($this->request->data);
+        $data = $this->request->data;
 
         $x = isset($data['x']) ? $data['x'] : 0;
         $y = isset($data['y']) ? $data['y'] : 0;
@@ -93,7 +105,7 @@ class MediafilesController extends AppController
             $box        = new Box($w, $h);
             $mode       = ImageInterface::THUMBNAIL_OUTBOUND;
 
-            $fileUrl = $file->file_url;
+            $fileUrl = WWW_ROOT.$file->file_url;
             $imagine->open($fileUrl)
                 ->crop($point, $box)
                 ->save($fileUrl);

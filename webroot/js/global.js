@@ -53,7 +53,7 @@ $(document).ready(function(){
 		var data = $('#cropping_img').data();
 		data.Jcrop.destroy();
 
-		$.post( $("div#croppingModal").data('action'), {file: data}).done( function( data ) {
+		$.post( $("div#croppingModal").data('action'), data).done( function( data ) {
 		  $( ".result" ).html( data );
 		  $('#croppingModal').modal('hide');
 		});
