@@ -49,7 +49,7 @@ class MediafilesController extends AppController
     {
         $this->request->allowMethod(['post', 'delete']);
         $mediafile = $this->Mediafiles->get($id);
-        $fileUrl = $mediafile->file_url
+        $fileUrl = $mediafile->file_url;
         if ($this->Mediafiles->delete($mediafile)) {
             if (file_exists($fileUrl)) {
                 unlink($fileUrl);
