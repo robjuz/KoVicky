@@ -56,4 +56,14 @@ class MediafilesController extends AppController
         }
         return $this->redirect($this->referer());
     }
+
+    public function isAuthorized($user = null)
+    {
+        // All registered users can upload files
+        if ($this->request->action === 'upload') {
+            return true;
+        }
+
+        return parent::isAuthorized($user);
+    }
 }

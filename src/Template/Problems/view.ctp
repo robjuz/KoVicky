@@ -49,7 +49,7 @@
             
                 <div class="dz-preview dz-processing dz-success dz-complete dz-image-preview">  
                     <div class="dz-image">
-                        <img data-dz-thumbnail="" alt="<?= $mediafile->file_name ?>" src="<?= $mediafile->file_url ?>" style="width: 100%">
+                        <img data-dz-thumbnail="" alt="<?= $mediafile->file_name ?>" src="<?= $mediafile->file_url ?>">
                     </div>  
                     <div class="dz-details">  
                         <div class="dz-filename">

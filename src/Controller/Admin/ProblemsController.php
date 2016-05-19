@@ -130,7 +130,7 @@ class ProblemsController extends AppController
         $problem = $this->Problems->get($id);
         $problem->thumb = 't_'.$problem->image;
 
-        if ($w > 0 AND $h > 0){
+        if ($w > 0 AND $h > 0 AND ($problem->image !== '../ko_vicky/img/default_thumb.jpg')){
             $imagine    = new Imagine();
             $point      = new Point($x,$y);
             $box        = new Box($w, $h);
@@ -144,5 +144,15 @@ class ProblemsController extends AppController
 
         $this->set( compact('problem') );
         $this->set('_serialize', ['problem']);
+    }
+
+    public function isAuthorized($user = null)
+    {
+        // All registered users can upload images and make thumbs
+        if ($this->request->action === 'upload' OR $this->request->action === 'thumb') {
+            return true;
+        }
+
+        return parent::isAuthorized($user);
     }
 }

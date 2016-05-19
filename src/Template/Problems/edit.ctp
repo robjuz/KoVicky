@@ -29,7 +29,7 @@
                         <div class="dz-preview dz-processing dz-success dz-complete dz-image-preview">  
                             <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#croppingModal" data-src="<?= '/uploads/'.$problem->image ?>">
                                 <div class="dz-image">
-                                    <img data-dz-thumbnail="" alt="<?= $problem->image ?>" src="<?= '/uploads/'.$problem->thumb ?>" style="width: 100%; height: 100%">
+                                    <img data-dz-thumbnail="" alt="<?= $problem->image ?>" src="<?= '/uploads/'.$problem->thumb ?>">
                                 </div>  
                                 <div class="dz-details">     
                                     <div class="dz-filename">
