@@ -14,8 +14,7 @@ $(document).ready(function(){
 			    	}
 				});
 				this.on("success", function(file,response){
-					$(file.previewElement).children().first().attr('data-src',response.file.file_url).attr('data-name',response.file.file_name);
-					$(file.previewElement).children().first().click();
+					$(file.previewElement).children().first().attr('data-src','/uploads/'+response.problem.image).click();
 				});
 			  }
 	}).addClass('dropzone');
@@ -35,8 +34,6 @@ $(document).ready(function(){
 	  var source = button.data('src');
 	  var modal = $(this);
 	  modal.find('.modal-body #cropping_img').attr('src',source);
-	  modal.find('.modal-body #cropping_img').attr('data-image',source);
-	  modal.find('.modal-body #cropping_img').attr('data-name',button.data('name'));
 	  if( modal.find('.modal-body #cropping_img').data().Jcrop != undefined ) {
 	  	modal.find('.modal-body #cropping_img').data().Jcrop.destroy();
 	  }

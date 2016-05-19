@@ -57,11 +57,6 @@ class ProblemsController extends AppController
             return $this->redirect(['action' => 'edit', $problem->id]);
         }
         if ($this->request->is(['patch', 'post', 'put'])) {
-            // //prevent removing photo on update then no new photo given
-            // if ($this->request->data['photo'] == '') {
-            //     unset($this->request->data['photo']);
-            // }
-
             $problem = $this->Problems->patchEntity($problem, $this->request->data);
 
             $problem->is_active = true;
@@ -101,6 +96,8 @@ class ProblemsController extends AppController
 
      public function upload($id = null) 
     {
+        $this->response->type('application/json');
+
         $imagine = new Imagine();
         $size    = new Box(800, 500);
         $mode    = ImageInterface::THUMBNAIL_INSET;
@@ -122,6 +119,7 @@ class ProblemsController extends AppController
 
     public function makeThumb($id = null)  
     {
+        $this->response->type('application/json');
         $data = $this->request->data;
 
         $x = isset($data['x']) ? $data['x'] : 0;
@@ -132,7 +130,7 @@ class ProblemsController extends AppController
         $problem = $this->Problems->get($id);
         $problem->thumb = 't_'.$problem->image;
 
-        if ($w > 0 AND $h > 0){
+        if ($w > 0 AND $h > 0 AND ($problem->image !== '../ko_vicky/img/default_thumb.jpg')){
             $imagine    = new Imagine();
             $point      = new Point($x,$y);
             $box        = new Box($w, $h);
@@ -146,5 +144,15 @@ class ProblemsController extends AppController
 
         $this->set( compact('problem') );
         $this->set('_serialize', ['problem']);
+    }
+
+    public function isAuthorized($user = null)
+    {
+        // All registered users can upload images and make thumbs
+        if ($this->request->action === 'upload' OR $this->request->action === 'thumb') {
+            return true;
+        }
+
+        return parent::isAuthorized($user);
     }
 }

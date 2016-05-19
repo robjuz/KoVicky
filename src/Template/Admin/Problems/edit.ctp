@@ -28,9 +28,9 @@
                     <?php if (!empty($problem->image)): ?>
                     <!-- Button trigger modal -->
                         <div class="dz-preview dz-processing dz-success dz-complete dz-image-preview">  
-                            <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#croppingModal" data-src="<?= '/uploads/'.$problem->image ?>" data-name="<?= $problem->image ?>">
+                            <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#croppingModal" data-src="<?= '/uploads/'.$problem->image ?>">
                                 <div class="dz-image">
-                                    <img data-dz-thumbnail="" alt="<?= $problem->image ?>" src="<?= '/uploads/'.$problem->thumb ?>" style="width: 100%; height: 100%">
+                                    <img data-dz-thumbnail="" alt="<?= $problem->image ?>" src="<?= '/uploads/'.$problem->thumb ?>">
                                 </div>  
                                 <div class="dz-details">     
                                     <div class="dz-filename">
@@ -67,6 +67,9 @@
                 </div>
             </div>
             <?= $this->Form->input('description',['class' => 'wysiwyg']); ?>
+            <?= $this->Form->button(__('Submit'),['class' => 'btn-submit']) ?>
+    </fieldset>
+    <?= $this->Form->end() ?>
             <div id="problem-dropzone" class="" data-action="/ko-vicky/admin/mediafiles/upload/attachment/<?= $problem->id ?>">
                 <?php if (!empty($problem->mediafiles)): ?>
                     <?php foreach ($problem->mediafiles as $mediafile): ?>
@@ -77,10 +80,20 @@
                                 </div>  
                                 <div class="dz-details">     
                                     <div class="dz-filename">
-                                        <span data-dz-name="">
+                                        <span class="btn btn-defautl" data-dz-name="">
                                             <?= $this->Html->link($mediafile->file_name, $mediafile->file_url,['target' => 'blank']) ?>
                                         </span>
                                     </div>  
+                                    <?= $this->Form->postLink($this->Html->icon('trash'),[
+                                        'controller' => 'mediafiles',
+                                        'action' => 'delete',
+                                        'confirm' => __('Are you sure you want to delete {0}?', $mediafile->file_name),
+                                        $mediafile->id
+                                    ],[
+                                        'escape' => false,
+                                        'class' => 'btn btn-danger',
+                                        'confirm' => __('Are you sure you want to delete {0}?', $mediafile->file_name),
+                                    ]) ?>
                                 </div>  
                             </div>
                         <?php endif; ?>
@@ -92,7 +105,4 @@
                     </span>
                 </div>
             </div>
-            <?= $this->Form->button(__('Submit')) ?>
-    </fieldset>
-    <?= $this->Form->end() ?>
 </div>

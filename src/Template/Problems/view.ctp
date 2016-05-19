@@ -1,36 +1,42 @@
 <div class="col-xs-12">
     <div class="well">
-        <div class="problem-image">
-            <img class="img-responsive"  src="<?= '/uploads/'.$problem->image ?>" alt="<?= h($problem->title) ?>" />
-        </div>
-        <h3>
-            <?= h($problem->title) ?>
-            <?php if($isAllowedToEdit) : ?>
-                <small>
-                    <?= $this->Html->link($this->Html->icon('edit'),['action' => 'edit', $problem->id],['escape' => false]) ?>
-                </small>
-            <?php endif; ?>
-        </h3>
-        <p>
-            <?= $this->Html->icon('user') ?>
-            <?= __('Created by {0}',h($problem->user->username)) ?>
-        </p>
-        <p>
-            <?= $this->Html->icon('time') ?>
-            <?= __('Created on {0}',h($problem->created)) ?>
-        </p>
-        <?php if ($problem->created != $problem->modified) :?>
-        <p>
-            <?= $this->Html->icon('time') ?>
-            <?= __('Last update on {0}',h($problem->modified)) ?>
-        </p>
-        <?php endif ?>
+        <div class="row">
+            <div class="col-xs-12 col-sm-4 col-sm-push-8">
+                <?php if (!empty($problem->image)): ?>
+                    <img class="img-responsive"  src="<?= '/uploads/'.$problem->thumb ?>" alt="<?= h($problem->title) ?>" />
+                <?php endif ?>
+            </div>
+            <div class="col-xs-12 col-sm-8 col-sm-pull-4">
+                <h3>
+                    <?= h($problem->title) ?>
+                    <?php if($isAllowedToEdit) : ?>
+                        <small>
+                            <?= $this->Html->link($this->Html->icon('edit'),['action' => 'edit', $problem->id],['escape' => false]) ?>
+                        </small>
+                    <?php endif; ?>
+                </h3>
+                <p>
+                    <?= $this->Html->icon('user') ?>
+                    <?= __('Created by {0}',h($problem->user->username)) ?>
+                </p>
+                <p>
+                    <?= $this->Html->icon('time') ?>
+                    <?= __('Created on {0}',h($problem->created)) ?>
+                </p>
+                <?php if ($problem->created != $problem->modified) :?>
+                <p>
+                    <?= $this->Html->icon('time') ?>
+                    <?= __('Last update on {0}',h($problem->modified)) ?>
+                </p>
+                <?php endif ?>
 
-        <hr>
-        <h4> <?= __('Description:') ?> </h4>
-        <p>
-            <?= $problem->description ?>
-        </p>
+                <hr>
+                <h4> <?= __('Description:') ?> </h4>
+                <p>
+                    <?= $problem->description ?>
+                </p>
+            </div>
+        </div>
     </div>
 
     <?php 
@@ -43,7 +49,7 @@
             
                 <div class="dz-preview dz-processing dz-success dz-complete dz-image-preview">  
                     <div class="dz-image">
-                        <img data-dz-thumbnail="" alt="<?= $mediafile->file_name ?>" src="<?= $mediafile->file_url ?>" style="width: 100%">
+                        <img data-dz-thumbnail="" alt="<?= $mediafile->file_name ?>" src="<?= $mediafile->file_url ?>">
                     </div>  
                     <div class="dz-details">  
                         <div class="dz-filename">

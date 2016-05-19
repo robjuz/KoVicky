@@ -1,15 +1,3 @@
-#image-upload,
-.problem-image > img {
-	float: right;
-	width: 480px;
-	height: 300px;
-	position:relative; /* or fixed or absolute */
-}
-
-input[name="file-photo"] {
-	cursor: pointer;
-}
-
 .problems-list .thumbnail {
 	min-height: 30em
 }
@@ -22,4 +10,14 @@ input[name="file-photo"] {
     padding: 30px;
     position: absolute;
     top: auto;
+}
+
+.btn-submit {
+	bottom: -70px;
+	position: absolute;
+}
+
+.dz-image img {
+	width: 100%;
+	height: 100%;
 }
