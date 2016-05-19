@@ -62,7 +62,7 @@ class ProblemsController extends AppController
             $problem->is_active = true;
             if ($this->Problems->save($problem)) {
                 $this->Flash->success(__('The problem has been saved.'));
-                return $this->redirect(['action' => 'index']);
+                return $this->redirect(['prefix' => false, 'controller' => 'problems', 'action' => 'view', $problem->id]);
             } else {
                 $this->Flash->error(__('The problem could not be saved. Please, try again.'));
             }

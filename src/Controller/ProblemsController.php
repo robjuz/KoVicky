@@ -65,7 +65,7 @@ class ProblemsController extends AppController
     {
         if ($id != null) {
             $problem = $this->Problems->get($id, [
-                'contain' => ['Mediafiles']
+                'contain' => ['Mediafiles', 'RelatedProblems']
             ]);
         } else {
             $problem = $this->Problems->newEntity();
@@ -79,12 +79,12 @@ class ProblemsController extends AppController
             $problem->is_active = true;
             if ($this->Problems->save($problem)) {
                 $this->Flash->success(__('The problem has been saved.'));
-                return $this->redirect(['action' => 'index']);
+                return $this->redirect(['action' => 'view', $problem->id]);
             } else {
                 $this->Flash->error(__('The problem could not be saved. Please, try again.'));
             }
         }
-        $problems = $this->Problems->find('list');
+        $problems = $this->Problems->find('list')->where(['is_active' => true]);
         $this->set(compact('problem', 'categories', 'problems'));
         $this->set('_serialize', ['problem']);
     }
