@@ -49,7 +49,11 @@ class MediafilesController extends AppController
     {
         $this->request->allowMethod(['post', 'delete']);
         $mediafile = $this->Mediafiles->get($id);
+        $fileUrl = $mediafile->file_url
         if ($this->Mediafiles->delete($mediafile)) {
+            if (file_exists($fileUrl)) {
+                unlink($fileUrl);
+            }
             $this->Flash->success(__('The mediafile has been deleted.'));
         } else {
             $this->Flash->error(__('The mediafile could not be deleted. Please, try again.'));
