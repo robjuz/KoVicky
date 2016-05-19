@@ -75,7 +75,7 @@
                 foreach ($problem->related_problems as $related_problem) : ?>
                     <div class="col-sm-4 col-md-3">
                         <div class="thumbnail">
-                            <img src="<?= $related_problem->photo ?>" alt="IMAGE">
+                            <img src="<?= $related_problem->thumb ?>" alt="IMAGE">
                             <div class="caption">
                                 <h3><?= $related_problem->title ?></h3>
                                 <p> <?= $this->Text->truncate(
@@ -100,7 +100,7 @@
                 foreach ($problem->parent_problems as $parent_problem) : ?>
                     <div class="col-sm-4 col-md-3">
                         <div class="thumbnail">
-                            <img src="<?= $parent_problem->photo ?>" alt="IMAGE">
+                            <img src="<?= $parent_problem->thumb ?>" alt="IMAGE">
                             <div class="caption">
                                 <h3><?= $parent_problem->title ?></h3>
                                 <p> <?= $this->Text->truncate(
