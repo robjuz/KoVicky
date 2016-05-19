@@ -149,7 +149,7 @@ class ProblemsController extends AppController
     public function isAuthorized($user = null)
     {
         // All registered users can upload images and make thumbs
-        if ($this->request->action === 'upload' OR $this->request->action === 'thumb') {
+        if ($this->request->action === 'upload' OR $this->request->action === 'make-thumb') {
             return true;
         }
 
