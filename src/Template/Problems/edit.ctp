@@ -1,10 +1,51 @@
+<!-- Modal -->
+<div class="modal fade" id="croppingModal" tabindex="-1" role="dialog" aria-labelledby="croppingLabel" data-action="/ko-vicky/admin/problems/make_thumb/<?= $problem->id ?>">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="croppingLabel">Crop Header Image</h4>
+      </div>
+      <div class="modal-body">
+          <?= $this->Html->Image('KoVicky.default.jpg',['id' => 'cropping_img', 'alt' => 'default']) ?>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary" id="crop_btn">Crop</button>
+      </div>
+    </div>
+  </div>
+</div>
+
 <div class="col-xs-12">
     <?= $this->Form->create($problem,['type' => 'file']) ?>
     <fieldset>
         <legend><?= __('Add/Edit Problem') ?></legend>
             <div class="row">
                 <div class="problem-image col-xs-12 col-sm-6 col-sm-push-6 text-center">
-                    <div id="image-upload" data-image-url="<?= $problem->photo ?>">
+                    <div id="problem-image-dropzone" data-action="/ko-vicky/admin/problems/upload/<?= $problem->id ?>">
+                    <?php if (!empty($problem->image)): ?>
+                    <!-- Button trigger modal -->
+                        <div class="dz-preview dz-processing dz-success dz-complete dz-image-preview">  
+                            <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#croppingModal" data-src="<?= '/uploads/'.$problem->image ?>">
+                                <div class="dz-image">
+                                    <img data-dz-thumbnail="" alt="<?= $problem->image ?>" src="<?= '/uploads/'.$problem->thumb ?>" style="width: 100%; height: 100%">
+                                </div>  
+                                <div class="dz-details">     
+                                    <div class="dz-filename">
+                                        <span data-dz-name="">
+                                            <?= $problem->image ?>
+                                        </span>
+                                    </div>  
+                                </div>  
+                            </button>
+                        </div>
+                    <?php endif; ?>
+                        <div class="dz-default dz-message">
+                            <span>
+                                <?= __('Drop files here to upload') ?>
+                            </span>
+                        </div>
                     </div>
                 </div>
                 <div class="col-xs-12 col-sm-6 col-sm-pull-6">
