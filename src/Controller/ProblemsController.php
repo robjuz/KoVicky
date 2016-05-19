@@ -74,11 +74,6 @@ class ProblemsController extends AppController
             return $this->redirect(['action' => 'edit', $problem->id]);
         }
         if ($this->request->is(['patch', 'post', 'put'])) {
-            //prevent removing photo on update then no new photo given
-            if ($this->request->data['photo'] == '') {
-                unset($this->request->data['photo']);
-            }
-
             $problem = $this->Problems->patchEntity($problem, $this->request->data);
             $problem->user_id = $this->Auth->user('id');
             $problem->is_active = true;
