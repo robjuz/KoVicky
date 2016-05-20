@@ -9,7 +9,17 @@
     <?php foreach ($problems as $problem) : ?>
     <div class="col-sm-6 col-md-4">
         <div class="thumbnail">
-            <img class="img-responsive" src="<?= '/uploads/'.$problem->thumb ?>" alt="<?= $problem->title ?>">
+            <?= $this->Html->image(
+                '../uploads/'.$problem->thumb, [
+                    "alt" => "Problem Thumbnail",
+                    'url' => [
+                        'controller' => 'Problems',
+                        'action' => 'view',
+                        $problem->id
+                    ]
+                ]
+            ); ?>
+
             <div class="caption">
                 <h3><?= $problem->title ?></h3>
                 <p> <?= $this->Text->truncate(
@@ -35,7 +45,7 @@
                     ],[
                         'escape' => false,
                         'style' => 'color: black;'
-                    ]) 
+                    ])
                 ?>
         </div>
     </div>

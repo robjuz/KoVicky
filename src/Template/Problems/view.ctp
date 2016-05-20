@@ -13,7 +13,7 @@
                         <small>
                             <?= $this->Html->link(
                                 $this->Html->icon('edit'),[
-                                    'action' => 'edit', 
+                                    'action' => 'edit',
                                     $problem->id
                                 ],[
                                     'escape' => false
@@ -51,27 +51,27 @@
             <h3> <?= __('Mediafiles:') ?> </h3>
             <div class="dropzone dz-clickable dz-started">
                 <?php foreach ($problem->mediafiles as $mediafile): ?>
-                    <div class="dz-preview dz-processing dz-success dz-complete dz-image-preview">  
+                    <div class="dz-preview dz-processing dz-success dz-complete dz-image-preview">
                         <div class="dz-image">
                             <img data-dz-thumbnail="" alt="<?= $mediafile->file_name ?>" src="<?= $mediafile->file_url ?>">
-                        </div>  
-                        <div class="dz-details">  
+                        </div>
+                        <div class="dz-details">
                             <div class="dz-filename">
                                 <span data-dz-name="">
                                     <?= $this->Html->link(
-                                        $mediafile->file_name, 
+                                        $mediafile->file_name,
                                         $mediafile->file_url,[
                                             'target' => 'blank'
                                         ]
                                     ); ?>
                                 </span>
-                            </div>  
-                        </div>  
+                            </div>
+                        </div>
                     </div>
             <?php endforeach; ?>
             </div>
         </div>
-    <?php endif; ?>                             
+    <?php endif; ?>
 
     <div id="related-problems" class="well problems-list">
         <h3> <?= __('Related Problems:') ?> </h3>
@@ -80,7 +80,16 @@
                 <?php foreach ($problem->related_problems as $related_problem) : ?>
                     <div class="col-sm-4 col-md-3">
                         <div class="thumbnail">
-                            <img src="<?= '/uploads/'.$related_problem->thumb ?>" alt="IMAGE">
+                            <?= $this->Html->image(
+                                '../uploads/'.$related_problem->thumb, [
+                                    "alt" => "Problem Thumbnail",
+                                    'url' => [
+                                        'controller' => 'Problems',
+                                        'action' => 'view',
+                                        $related_problem->id
+                                    ]
+                                ]
+                            ); ?>
                             <div class="caption">
                                 <h3><?= $related_problem->title ?></h3>
                                 <p> <?= $this->Text->truncate(
@@ -94,7 +103,7 @@
                                 <p>
                                     <?= $this->Html->link(
                                         __('Read more'),[
-                                            'action' => 'view', 
+                                            'action' => 'view',
                                             $related_problem->id
                                         ], [
                                             'class' => 'btn btn-primary'
@@ -110,7 +119,16 @@
                 <?php foreach ($problem->parent_problems as $parent_problem) : ?>
                     <div class="col-sm-4 col-md-3">
                         <div class="thumbnail">
-                            <img src="<?= '/uploads/'.$parent_problem->thumb ?>" alt="IMAGE">
+                            <?= $this->Html->image(
+                                '../uploads/'.$parent_problem->thumb, [
+                                    "alt" => "Problem Thumbnail",
+                                    'url' => [
+                                        'controller' => 'Problems',
+                                        'action' => 'view',
+                                        $parent_problem->id
+                                    ]
+                                ]
+                            ); ?>
                             <div class="caption">
                                 <h3><?= $parent_problem->title ?></h3>
                                 <p> <?= $this->Text->truncate(
@@ -124,7 +142,7 @@
                                 <p>
                                     <?= $this->Html->link(
                                         __('Read more'),[
-                                            'action' => 'view', 
+                                            'action' => 'view',
                                             $parent_problem->id
                                         ], [
                                             'class' => 'btn btn-primary'
