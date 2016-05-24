@@ -26,18 +26,18 @@
                     <div id="problem-image-dropzone" data-action="/ko-vicky/admin/problems/upload/<?= $problem->id ?>">
                     <?php if (!empty($problem->image)): ?>
                     <!-- Button trigger modal -->
-                        <div class="dz-preview dz-processing dz-success dz-complete dz-image-preview">  
+                        <div class="dz-preview dz-processing dz-success dz-complete dz-image-preview">
                             <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#croppingModal" data-src="<?= '/uploads/'.$problem->image ?>">
                                 <div class="dz-image">
                                     <img data-dz-thumbnail="" alt="<?= $problem->image ?>" src="<?= '/uploads/'.$problem->thumb ?>">
-                                </div>  
-                                <div class="dz-details">     
+                                </div>
+                                <div class="dz-details">
                                     <div class="dz-filename">
                                         <span data-dz-name="">
                                             <?= $problem->image ?>
                                         </span>
-                                    </div>  
-                                </div>  
+                                    </div>
+                                </div>
                             </button>
                         </div>
                     <?php endif; ?>
@@ -56,29 +56,32 @@
                         <div class="col-xs-12">
                             <?= $this->Form->input('related_problems._ids', ['options' => $problems, 'empty' => false, 'multiple' => true, 'class' =>'select2']); ?>
                         </div>
+                        <div class="col-xs-12">
+                            <?= $this->Form->input('tags._ids', ['options' => $tags, 'empty' => true, 'multiple' => true, 'class' =>'select2']); ?>
+                        </div>
                     </div>
                 </div>
             </div>
             <?= $this->Form->input('description',['class' => 'wysiwyg']); ?>
             <div id="problem-dropzone" class="" data-action="/ko-vicky/admin/mediafiles/upload/<?= $problem->id ?>">
-                <?php 
+                <?php
                 if (!empty($problem->mediafiles)): ?>
                     <?php
                     foreach ($problem->mediafiles as $mediafile): ?>
-                        
-                            <div class="dz-preview dz-processing dz-success dz-complete dz-image-preview">  
+
+                            <div class="dz-preview dz-processing dz-success dz-complete dz-image-preview">
                                 <div class="dz-image">
                                     <img data-dz-thumbnail="" alt="<?= $mediafile->file_name ?>" src="<?= $mediafile->file_url ?>" style="width: 100%; height: 100%">
-                                </div>  
-                                <div class="dz-details">     
+                                </div>
+                                <div class="dz-details">
                                     <div class="dz-filename">
                                         <span data-dz-name="">
                                             <?= $this->Html->link($mediafile->file_name, $mediafile->file_url,['target' => 'blank']) ?>
                                         </span>
-                                    </div>  
-                                </div>  
+                                    </div>
+                                </div>
                             </div>
-                    <?php 
+                    <?php
                     endforeach; ?>
                 <?php
                 endif;

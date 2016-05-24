@@ -49,7 +49,7 @@ class ProblemsController extends AppController
     {
         if ($id != null) {
             $problem = $this->Problems->get($id, [
-                'contain' => ['Mediafiles', 'Users','RelatedProblems']
+                'contain' => ['Mediafiles', 'Users','RelatedProblems', 'Tags']
             ]);
         } else {
             $problem = $this->Problems->newEntity();
@@ -58,6 +58,19 @@ class ProblemsController extends AppController
         }
         if ($this->request->is(['patch', 'post', 'put'])) {
             $problem = $this->Problems->patchEntity($problem, $this->request->data);
+
+            //saving new tags
+            if (!empty($this->request->data['tags'])){
+            $newTags = [ 'tags' => ['_ids' => [] ]];
+                foreach ($this->request->data['tags']['_ids'] as $tag) {
+                    if (!is_numeric($tag)) {
+                        $newTag = $this->Problems->Tags->newEntity();
+                        $newTag->title = $tag;
+                        $newTags['tags']['_ids'][] = $this->Problems->Tags->save($newTag)->id;
+                    }
+                }
+                $problem = $this->Problems->patchEntity($problem, $newTags);
+            }
 
             $problem->is_active = true;
             if ($this->Problems->save($problem)) {
@@ -71,7 +84,10 @@ class ProblemsController extends AppController
         $users = $this->Problems->Users->find('list',[
             'valueField' => 'username'
             ]);
-        $this->set(compact('problem', 'users', 'problems'));
+        $tags = $this->Problems->Tags->find('list',[
+            'valueField' => 'title'
+            ]);
+        $this->set(compact('problem', 'users', 'problems', 'tags'));
         $this->set('_serialize', ['problem']);
     }
 
@@ -94,14 +110,14 @@ class ProblemsController extends AppController
         return $this->redirect(['action' => 'index']);
     }
 
-     public function upload($id = null) 
+     public function upload($id = null)
     {
         $this->response->type('application/json');
 
         $imagine = new Imagine();
         $size    = new Box(800, 500);
         $mode    = ImageInterface::THUMBNAIL_INSET;
-        
+
         $data = $this->request->data['file'];
 
         $problem = $this->Problems->get($id);
@@ -117,7 +133,7 @@ class ProblemsController extends AppController
         $this->set('_serialize', ['problem']);
     }
 
-    public function makeThumb($id = null)  
+    public function makeThumb($id = null)
     {
         $this->response->type('application/json');
         $data = $this->request->data;

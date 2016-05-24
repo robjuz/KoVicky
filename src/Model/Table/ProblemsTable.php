@@ -50,6 +50,13 @@ class ProblemsTable extends Table
         $this->hasMany('KoVicky.Mediafiles', [
             'foreignKey' => 'problem_id'
         ]);
+
+        $this->belongsToMany('KoVicky.Tags', [
+            'foreignKey' => 'tag_id',
+            'targetForeignKey' => 'problem_id',
+            'joinTable' => 'KoVicky_problems_tags'
+        ]);
+
         $this->belongsTo('Users', [
             'foreignKey' => 'user_id',
             'joinType' => 'LEFT'

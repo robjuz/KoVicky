@@ -50,7 +50,7 @@ class ProblemsController extends AppController
 
         $this->set('problem', $problem);
         $this->set('_serialize', ['problem']);
-        
+
         $this->set('isAllowedToEdit',$this->isAllowedToEdit($id,$this->Auth->user('id')));
     }
 
@@ -65,7 +65,7 @@ class ProblemsController extends AppController
     {
         if ($id != null) {
             $problem = $this->Problems->get($id, [
-                'contain' => ['Mediafiles', 'RelatedProblems']
+                'contain' => ['Mediafiles', 'RelatedProblems', 'Tags']
             ]);
         } else {
             $problem = $this->Problems->newEntity();
@@ -85,7 +85,10 @@ class ProblemsController extends AppController
             }
         }
         $problems = $this->Problems->find('list')->where(['is_active' => true]);
-        $this->set(compact('problem', 'categories', 'problems'));
+        $tags = $this->Problems->Tags->find('list',[
+            'valueField' => 'title'
+            ]);
+        $this->set(compact('problem', 'problems', 'tags'));
         $this->set('_serialize', ['problem']);
     }
 
